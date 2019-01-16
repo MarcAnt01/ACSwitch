@@ -1,0 +1,4 @@
+Files in this folder are a mix of tools used during building of ACSwitch and of
+tools used personally by me during development. You might find them useful as
+well, but they're not documented and will never be, so please make sure to read
+the code first and if needed, adapt it to your needs.
