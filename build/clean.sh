@@ -38,4 +38,4 @@ print "Cleaning up"
 	git --work-tree $PROJECT --git-dir $PROJECT/.git checkout devel
 	git --work-tree $NATIVE --git-dir $PROJECT/.git/modules/native checkout devel
 	git --work-tree $MODULE --git-dir $PROJECT/.git/modules/module checkout devel
-) 2>/dev/null
+) >/dev/null 2>&1
