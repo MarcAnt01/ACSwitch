@@ -30,7 +30,7 @@ readonly MODULE_FILES=(
 print "Cleaning up"
 
 (
-	rm -rf $TEMPZIP 2>/dev/null
+	rm -rf $TEMPZIP
 
 	git --work-tree $NATIVE --git-dir $PROJECT/.git/modules/native checkout -- ${NATIVE_FILES[@]}
 	git --work-tree $MODULE --git-dir $PROJECT/.git/modules/module checkout -- ${MODULE_FILES[@]}
