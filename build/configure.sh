@@ -19,10 +19,10 @@
 SCRIPT_NAME=$(basename $BASH_SOURCE)
 
 readonly INCLUDE_PATH=$NATIVE/include
-readonly DB_RAW=$BUILDDIR/switch.db-raw
 
-readonly DB_SOURCE=$NATIVE/ctrlfiles.cc
-readonly DB_HEADER=$INCLUDE_PATH/ctrlfiles.h
+readonly DB_RAW=$BUILDDIR/switch.db-raw
+readonly DB_SOURCE=$NATIVE/database.cc
+readonly DB_HEADER=$INCLUDE_PATH/database.h
 
 readonly LENGTH_DEF=9999
 
@@ -32,7 +32,7 @@ readonly SOURCE_BODY=\
 
 using namespace std;
 
-array<struct ControlFiles::ControlFile, %d> ControlFiles::controlFiles = { {
+array<struct Database::ControlFile, %d> Database::controlFiles = { {
 %s
 } };"
 
