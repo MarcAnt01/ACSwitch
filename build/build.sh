@@ -36,12 +36,6 @@ function getprop {
 readonly VERSION=$(getprop version $MODULE/module.prop)
 readonly CODE=$(getprop versionCode $MODULE/module.prop)
 
-(
-	git --work-tree $PROJECT --git-dir $PROJECT/.git checkout master
-	git --work-tree $NATIVE --git-dir $PROJECT/.git/modules/native checkout master
-	git --work-tree $MODULE --git-dir $PROJECT/.git/modules/module checkout master
-) >/dev/null 2>&1
-
 source $CONFIGURATOR
 source $COMPILER
 source $PACKER
