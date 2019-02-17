@@ -18,6 +18,8 @@
 
 SCRIPT_NAME=$(basename $BASH_SOURCE)
 
+readonly INSTALLER_SCRIPT=$MODULE/META-INF/com/google/android/update-binary
+
 readonly INCLUDE_PATH=$NATIVE/include
 
 readonly DB_RAW=$BUILDDIR/switch.db-raw
@@ -44,6 +46,10 @@ readonly ELEMENT_BODY=\
 		\"%s\"
 	},"
 
+function setprop {
+	sed -i "s|^$1=.*|$1=$2|g" $3
+}
+
 function getlines {
 	grep -Ev "^$|^#" $1
 }
@@ -60,6 +66,8 @@ function parsenode {
 	VAL_OFF=$3
 	[[ -n $VAL_OFF ]] && return 0 || return 1
 }
+
+setprop MIN_API $API_LEVEL $INSTALLER_SCRIPT
 
 SIZE=$(getlines $DB_RAW | wc -l)
 

@@ -1,7 +1,0 @@
-{
-	"debug.inlineValues": true,
-	"files.associations": {
-		"*.cc": "cpp",
-		"*.h": "cpp"
-	}
-}

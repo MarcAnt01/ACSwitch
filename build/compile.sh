@@ -22,8 +22,6 @@ readonly BINDIR=$MODULE/bin
 
 readonly COMPILER_BINDIR=$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin
 
-readonly API_LEVEL=21
-
 readonly ARM_TRIPLE=armv7a-linux-androideabi$API_LEVEL
 readonly X86_TRIPLE=i686-linux-android$API_LEVEL
 

@@ -4,8 +4,9 @@
 # PWD=/sys/class/power_supply
 # Last updated: Wed, Jan 23, 2019
 
-# Note by Jaymin Suthar: I have removed some switches and converted many paths
-# to their absolute equivalents with permission taken from original author.
+# I have removed some switches and converted many paths to their absolute equals
+# with permission taken from original author.
+#                                                                - Jaymin Suthar
 
 /proc/smb1357_disable_chrg 0 1
 /sys/class/hw_power/charger/charge_data/enable_charger 1 0

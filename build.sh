@@ -23,6 +23,8 @@ readonly PROJECT=$(realpath $(dirname $BASH_SOURCE))
 readonly NATIVE=$PROJECT/native
 readonly MODULE=$PROJECT/module
 
+readonly API_LEVEL=21
+
 readonly TOOLSPATH=$PROJECT/tools
 readonly BUILDDIR=$PROJECT/build
 readonly BUILDER=$BUILDDIR/build.sh

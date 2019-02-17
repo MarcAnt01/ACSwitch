@@ -20,7 +20,7 @@ SCRIPT_NAME=$(basename $BASH_SOURCE)
 
 readonly ANDROID_NDK=$ANDROID_NDK_HOME
 
-readonly CONFIGURATOR=$BUILDDIR/configure.sh
+readonly PATCHER=$BUILDDIR/patch.sh
 readonly COMPILER=$BUILDDIR/compile.sh
 readonly PACKER=$BUILDDIR/pack.sh
 readonly CLEANER=$BUILDDIR/clean.sh
@@ -36,7 +36,7 @@ function getprop {
 readonly VERSION=$(getprop version $MODULE/module.prop)
 readonly CODE=$(getprop versionCode $MODULE/module.prop)
 
-source $CONFIGURATOR
+source $PATCHER
 source $COMPILER
 source $PACKER
 source $CLEANER

@@ -14,5 +14,5 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
 
-Please note that zipsigner.jar binary in tools/ folder is taken from @osm0sis'
-"Shell Edify Replacement" thread and is developed and copyrighted by @topjohnwu.
+zipsigner.jar binary in tools/ folder is developed and copyrighted by @topjohnwu
+and is taken from @osm0sis' "Shell Edify Replacement" thread at xda-developers.
