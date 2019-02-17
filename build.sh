@@ -47,5 +47,5 @@ source $BUILDER
 echo -e ""
 echo -e "\e[01;32mOutput zip file: $OUTZIP\e[0m"
 echo -e ""
-echo -e "\e[01;32mIf you are a collaborator or a contributor and the build succeeded without any\e[0m"
-echo -e "\e[01;32merrors, please be kind to contribute any changes back to the original project :)\e[0m"
+echo -e "\e[01;32mIf you had made any changes to the original sources that could be benificial to\e[0m"
+echo -e "\e[01;32mothers as well, please consider creating a Pull Request with your change/patches.\e[0m"
