@@ -26,7 +26,7 @@ readonly PACKER=$BUILDDIR/pack.sh
 readonly CLEANER=$BUILDDIR/clean.sh
 
 function print {
-	echo -e "- \e[01;33m$1\e[0m"
+	echo -e "- \e[01;34m$1\e[0m"
 }
 
 function getprop {

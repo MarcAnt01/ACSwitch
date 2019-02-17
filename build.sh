@@ -45,7 +45,7 @@ fi
 source $BUILDER
 
 echo -e ""
-echo -e "\e[01;32mOutput zip file: $OUTZIP\e[0m"
+echo -e "Output zip file: \e[01;32m$OUTZIP\e[0m"
 echo -e ""
-echo -e "\e[01;32mIf you had made any changes to the original sources that could be benificial to\e[0m"
-echo -e "\e[01;32mothers as well, please consider creating a Pull Request with your change/patches.\e[0m"
+echo -e "\e[01;35mIf you had made any changes to the original sources that could be benificial to\e[0m"
+echo -e "\e[01;35mothers as well, please consider creating a Pull Request with your change/patches.\e[0m"
