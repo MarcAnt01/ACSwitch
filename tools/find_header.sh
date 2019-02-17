@@ -20,7 +20,7 @@ readonly INCLUDE_PATH_ALL=(
 	/media/sjaymin/__SHARED_K__/Development/IDE/Android_NDK/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1
 	/media/sjaymin/__SHARED_K__/Development/IDE/Android_NDK/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/local/include
 	/media/sjaymin/__SHARED_K__/Development/IDE/Android_NDK/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/8.0.2/include
-	/media/sjaymin/__SHARED_K__/Development/IDE/Android_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/sysroot/usr/include/aarch64-linux-android
+	/media/sjaymin/__SHARED_K__/Development/IDE/Android_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/sysroot/usr/include/arm-linux-androideabi
 	/media/sjaymin/__SHARED_K__/Development/IDE/Android_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/sysroot/usr/include
 )
 
