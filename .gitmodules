@@ -1,6 +1,6 @@
 [submodule "module"]
 	path = module
-	url = https://github.com/sjayminsgithub/ACSwitch-module.git
+	url = https://github.com/sjaymin1001/ACSwitch-module.git
 [submodule "native"]
 	path = native
-	url = https://github.com/sjayminsgithub/ACSwitch-native.git
+	url = https://github.com/sjaymin1001/ACSwitch-native.git
