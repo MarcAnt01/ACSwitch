@@ -29,7 +29,7 @@ readonly COMPILER_ARM=$COMPILER_BINDIR/$ARM_TRIPLE-clang++
 readonly COMPILER_X86=$COMPILER_BINDIR/$X86_TRIPLE-clang++
 
 function compile {
-	$1 $NATIVE/*.cc -I$INCLUDE_PATH -O2 -llog -s -o $BINDIR/acs_$2
+	$1 $NATIVE/*.cc -I$INCLUDE_PATH -O2 -flto -fno-rtti -fomit-frame-pointer -llog -s -o $BINDIR/acs_$2
 
 	if (($? != 0)); then
 		abort "Compilation failed"
