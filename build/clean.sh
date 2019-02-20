@@ -18,26 +18,12 @@
 
 SCRIPT_NAME=$(basename $BASH_SOURCE)
 
-readonly BUILD_FILES=(
-	$PROJECT/build.sh
-)
-
-readonly NATIVE_FILES=(
-	$DB_HEADER
-	$DB_SOURCE
-)
-
-readonly MODULE_FILES=(
-	$INSTALLER_SCRIPT
-	$BINDIR/*
-)
-
 print "Cleaning up"
 
-(
-	rm -rf $TEMPZIP
+rm -rf $TEMPZIP 2>/dev/null
 
-	git --work-tree $PROJECT --git-dir $PROJECT/.git checkout -- ${BUILD_FILES[@]}
-	git --work-tree $NATIVE --git-dir $PROJECT/.git/modules/native checkout -- ${NATIVE_FILES[@]}
-	git --work-tree $MODULE --git-dir $PROJECT/.git/modules/module checkout -- ${MODULE_FILES[@]}
-) 2>/dev/null
+(
+	git --work-tree $PROJECT --git-dir $PROJECT/.git reset --hard
+	git --work-tree $NATIVE --git-dir $PROJECT/.git/modules/native reset --hard
+	git --work-tree $MODULE --git-dir $PROJECT/.git/modules/module reset --hard
+) >/dev/null

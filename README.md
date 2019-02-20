@@ -24,6 +24,9 @@
 
 * Make sure you have `zip` available in your PATH, i.e., `sudo apt install zip`
 
+* Commit your modifications as the cleanup will hard reset all repos to the last
+  commit (please don't mind it, I need this feature personally).
+
 * Run `./build.sh`, this is a wrapper script around other scripts that may patch
   source files, compile acc binaries and pack a flashable zip out of 'em. If you
   need just the binaries, get them out of it.
