@@ -13,7 +13,7 @@
 			"defines": [],
 			"compilerPath": "/media/sjaymin/__SHARED_K__/Development/IDE/Android_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi21-clang++",
 			"cStandard": "c11",
-			"cppStandard": "c++14",
+			"cppStandard": "c++17",
 			"intelliSenseMode": "clang-x64"
 		},
 		{
@@ -29,7 +29,7 @@
 			"defines": [],
 			"compilerPath": "/media/sjaymin/__SHARED_K__/Development/IDE/Android_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/i686-linux-android21-clang++",
 			"cStandard": "c11",
-			"cppStandard": "c++14",
+			"cppStandard": "c++17",
 			"intelliSenseMode": "clang-x64"
 		}
 	],
