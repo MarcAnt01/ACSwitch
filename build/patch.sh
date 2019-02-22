@@ -34,7 +34,7 @@ readonly SOURCE_BODY=\
 
 using namespace std;
 
-array<struct Database::ControlFile, %d> Database::controlFiles = { {
+array<Database::ControlFile, %d> Database::controlFiles = { {
 %s
 } };"
 
