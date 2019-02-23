@@ -41,8 +41,8 @@ function compile {
 	fi
 }
 
-print "Compiling acs binary for arm"
+print "Compiling \`acs\` binary for arm"
 compile $COMPILER_ARM arm
 
-print "Compiling acs binary for x86"
+print "Compiling \`acs\` binary for x86"
 compile $COMPILER_X86 x86

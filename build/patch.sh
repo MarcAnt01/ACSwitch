@@ -71,10 +71,9 @@ setprop MIN_API $API_LEVEL $INSTALLER_SCRIPT
 
 SIZE=$(getlines $DB_RAW | wc -l)
 
-print "Patching database header"
 sed -i "s/$LENGTH_DEF/$SIZE/g" $DB_HEADER
 
-print "Generating database source"
+print "Generating database source file"
 
 ELEMENTS=""
 

@@ -18,8 +18,6 @@
 
 SCRIPT_NAME=$(basename $BASH_SOURCE)
 
-print "Cleaning up"
-
 rm -rf $TEMPZIP 2>/dev/null
 
 (

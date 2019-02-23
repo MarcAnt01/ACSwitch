@@ -49,8 +49,8 @@ function signzip {
 rm -f $TEMPZIP $OUTZIP
 mkdir $OUTDIR 2>/dev/null
 
-print "Packing flashable zip"
+print "Packing a recovery flashable zip"
 makezip $TEMPZIP $MODULE
 
-print "Signing the zip file"
+print "Signing the zip using test keys"
 signzip $TEMPZIP $OUTZIP
