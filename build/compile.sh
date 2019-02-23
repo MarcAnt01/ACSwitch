@@ -28,11 +28,13 @@ readonly X86_TRIPLE=i686-linux-android$API_LEVEL
 readonly COMPILER_ARM=$COMPILER_BINDIR/$ARM_TRIPLE-clang++
 readonly COMPILER_X86=$COMPILER_BINDIR/$X86_TRIPLE-clang++
 
+readonly SOURCE="$NATIVE/*.cc"
+readonly HEADER="-I$INCLUDE_PATH"
 readonly CFLAGS="-std=c++17 -O2 -flto -fno-rtti -fomit-frame-pointer -fuse-ld=lld"
 readonly LDLIBS="-llog"
 
 function compile {
-	$1 $NATIVE/*.cc -I$INCLUDE_PATH $CFLAGS $LDLIBS -s -o $BINDIR/acs_$2
+	$1 $SOURCE $HEADER $CFLAGS $LDLIBS -s -o $BINDIR/acs_$2
 
 	if (($? != 0)); then
 		abort "Compilation failed"
