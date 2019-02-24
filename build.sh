@@ -22,6 +22,7 @@ readonly PROJECT=$(realpath $(dirname $BASH_SOURCE))
 
 readonly NATIVE=$PROJECT/native
 readonly MODULE=$PROJECT/module
+readonly CORE=$NATIVE/core
 
 readonly OUTDIR=$PROJECT/out
 

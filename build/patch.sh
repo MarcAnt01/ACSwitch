@@ -20,11 +20,11 @@ SCRIPT_NAME=$(basename $BASH_SOURCE)
 
 readonly INSTALLER_SCRIPT=$MODULE/META-INF/com/google/android/update-binary
 
-readonly INCLUDE_PATH=$NATIVE/include
+readonly CORE_HEADERS=$CORE/include
 
 readonly DB_RAW=$BUILDDIR/switch.db-raw
-readonly DB_SOURCE=$NATIVE/database.cc
-readonly DB_HEADER=$INCLUDE_PATH/database.h
+readonly DB_SOURCE=$CORE/database.cc
+readonly DB_HEADER=$CORE_HEADERS/database.h
 
 readonly LENGTH_DEF=9999
 
