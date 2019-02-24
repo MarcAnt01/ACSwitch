@@ -8,7 +8,7 @@
 
 * Compilation has been tested only on Ubuntu 18.10 Desktop and build scripts are
   provided only for Linux officially, Mac and Windows users might need to modify
-  them to work on those respective platforms.
+  them to build on those respective platforms.
 
 * Build scripts build acs binary for API level 21 by default, though there is no
   API-specific implementation in native part, you might target different APIs to
@@ -28,8 +28,8 @@
   commit (please don't mind it, I need this feature personally).
 
 * Run `./build.sh`, this is a wrapper script around other scripts that may patch
-  source files, compile acc binaries and pack a flashable zip out of 'em. If you
-  need just the binaries, get them out of it.
+  source files, compile acs binaries and pack a recovery flashable zip from 'em.
+  If you need just the binaries, get them out of it.
 
 ## Legal
 
