@@ -31,6 +31,9 @@
   source files, compile acs binaries and pack a recovery flashable zip from 'em.
   If you need just the binaries, get them out of it.
 
+* If you face any bugs while building, please open a GitHub issue with build.log
+  file and complete report of incident and how to reproduce the same.
+
 ## Legal
 
 * See file NOTICE in project root for licensing information and more details.

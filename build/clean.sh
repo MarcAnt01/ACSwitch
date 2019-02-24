@@ -18,7 +18,7 @@
 
 SCRIPT_NAME=$(basename $BASH_SOURCE)
 
-rm -rf $TEMPZIP 2>/dev/null
+rm -rf $TEMPZIP
 
 (
 	git --work-tree $PROJECT --git-dir $PROJECT/.git reset --hard

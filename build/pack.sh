@@ -18,8 +18,6 @@
 
 SCRIPT_NAME=$(basename $BASH_SOURCE)
 
-readonly OUTDIR=$PROJECT/out
-
 readonly ZIPSIGNER=$TOOLSPATH/zipsigner.jar
 
 readonly ZIPNAME=ACSwitch-$VERSION-$CODE-stable
@@ -47,7 +45,6 @@ function signzip {
 }
 
 rm -f $TEMPZIP $OUTZIP
-mkdir $OUTDIR 2>/dev/null
 
 print "Packing a recovery flashable zip"
 makezip $TEMPZIP $MODULE

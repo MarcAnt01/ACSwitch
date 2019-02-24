@@ -23,14 +23,23 @@ readonly PROJECT=$(realpath $(dirname $BASH_SOURCE))
 readonly NATIVE=$PROJECT/native
 readonly MODULE=$PROJECT/module
 
+readonly OUTDIR=$PROJECT/out
+
 readonly API_LEVEL=21
+
+readonly LOGFILE=$OUTDIR/build.log
 
 readonly TOOLSPATH=$PROJECT/tools
 readonly BUILDDIR=$PROJECT/build
 readonly BUILDER=$BUILDDIR/build.sh
 
+if [[ ! -d $OUTDIR ]]; then
+	mkdir $OUTDIR
+fi
+exec 3>&2 2>$LOGFILE
+
 function abort {
-	echo >&2 -e "$SCRIPT_NAME: \e[01;33mERROR\e[0m: \e[01;31m$1\e[0m"
+	echo >&3 -e "$SCRIPT_NAME: \e[01;33mERROR\e[0m: \e[01;31m$1\e[0m"
 	if [[ -n $CLEANER ]]; then
 		source $CLEANER
 	fi
@@ -40,7 +49,7 @@ function abort {
 if [[ -z $ANDROID_NDK_HOME ]]; then
 	abort "Please export Android NDK path to ANDROID_NDK_HOME"
 fi
-if ! command -v zip >/dev/null 2>&1; then
+if ! command -v zip >/dev/null; then
 	abort "Please install package zip to compress module code"
 fi
 
