@@ -28,10 +28,8 @@ readonly X86_TRIPLE=i686-linux-android$API_LEVEL
 readonly COMPILER_ARM=$COMPILER_BINDIR/$ARM_TRIPLE-clang++
 readonly COMPILER_X86=$COMPILER_BINDIR/$X86_TRIPLE-clang++
 
-readonly HEADERS=$NATIVE/include
-
 readonly SOURCE="$NATIVE/*.cc $CORE/*.cc"
-readonly HEADER="-I$HEADERS -I$CORE_HEADERS"
+readonly HEADER="-I$NATIVE/include -I$CORE/include"
 readonly CFLAGS="-std=c++17 -O2 -flto -fno-rtti -fomit-frame-pointer -fuse-ld=lld"
 readonly LDLIBS="-llog"
 

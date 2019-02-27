@@ -20,21 +20,11 @@ SCRIPT_NAME=$(basename $BASH_SOURCE)
 
 readonly INSTALLER_SCRIPT=$MODULE/META-INF/com/google/android/update-binary
 
-readonly CORE_HEADERS=$CORE/include
-
 readonly DB_RAW=$BUILDDIR/switch.db-raw
 readonly DB_SOURCE=$CORE/database.cc
-readonly DB_HEADER=$CORE_HEADERS/database.h
-
-readonly LENGTH_DEF=9999
 
 readonly SOURCE_BODY=\
-"#include <array>
-#include <string>
-
-using namespace std;
-
-const array<Database::ControlFile, %d> Database::controlFiles = { {
+"vector<Database::ControlFile> Database::controlFiles = { {
 %s
 } };"
 
@@ -48,10 +38,6 @@ readonly ELEMENT_BODY=\
 
 function setprop {
 	sed -i "s|^$1=.*|$1=$2|g" $3
-}
-
-function getlines {
-	grep -Ev "^$|^#" $1
 }
 
 function parsenode {
@@ -69,10 +55,6 @@ function parsenode {
 
 setprop MIN_API $API_LEVEL $INSTALLER_SCRIPT
 
-SIZE=$(getlines $DB_RAW | wc -l)
-
-sed -i "s/$LENGTH_DEF/$SIZE/g" $DB_HEADER
-
 print "Generating database source file"
 
 ELEMENTS=""
@@ -82,6 +64,6 @@ while read LINE; do
 		abort "Raw database is malformed, invalid entry: \"$LINE\""
 	fi
 	ELEMENTS+=$(printf "$ELEMENT_BODY\n" $EVENTS $NODE $VAL_ON $VAL_OFF)
-done < <(getlines $DB_RAW)
+done < <(grep -Ev "^$|^#" $DB_RAW)
 
-printf "$SOURCE_BODY\n" "$SIZE" "$ELEMENTS" >>$DB_SOURCE
+printf "$SOURCE_BODY\n" "$ELEMENTS" >>$DB_SOURCE
