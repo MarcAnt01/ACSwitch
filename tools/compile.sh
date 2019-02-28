@@ -18,22 +18,37 @@
 
 readonly ANDROID_NDK=/media/sjaymin/__SHARED_K__/Development/IDE/Android_NDK
 
-readonly INCLUDE_PATH_ALL=(
-	$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1
-	$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/local/include
-	$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/8.0.2/include
-	$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/arm-linux-androideabi
-	$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include
-)
+readonly OUTDIR=$(dirname $(dirname $BASH_SOURCE))/temp
 
-readonly HEADER_NAME=$1
+readonly API_LEVEL=21
 
-HEADERS_FOUND=()
+readonly ARM_TRIPLE=armv7a-linux-androideabi$API_LEVEL
+readonly X86_TRIPLE=i686-linux-android$API_LEVEL
 
-while read HEADER; do
-	HEADERS_FOUND+=($HEADER)
-done < <(find ${INCLUDE_PATH_ALL[@]} -type f -name $HEADER_NAME 2>/dev/null)
+readonly COMPILER_ARM=$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/$ARM_TRIPLE-clang++
+readonly COMPILER_X86=$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/$X86_TRIPLE-clang++
 
-if ((${#HEADERS_FOUND[@]} > 0)); then
-	code --new-window ${HEADERS_FOUND[@]}
-fi
+function abort {
+	echo >&2 "ERROR: $1"
+	exit 1
+}
+
+function compile {
+	local COMPILER=$1
+	local ARCH=$2
+	shift 2
+
+	$COMPILER $@ -O2 -flto -fno-rtti -fomit-frame-pointer -fuse-ld=lld -fPIC -s -o $OUTDIR/a.out.$ARCH
+
+	if (($? != 0)); then
+		abort "Compilation failed"
+	fi
+}
+
+mkdir $OUTDIR 2>/dev/null
+
+echo "Compiling a.out for arm"
+compile $COMPILER_ARM arm $@
+
+echo "Compiling a.out for x86"
+compile $COMPILER_X86 x86 $@
