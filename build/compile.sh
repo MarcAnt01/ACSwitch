@@ -28,13 +28,34 @@ readonly X86_TRIPLE=i686-linux-android$API_LEVEL
 readonly COMPILER_ARM=$COMPILER_BINDIR/$ARM_TRIPLE-clang++
 readonly COMPILER_X86=$COMPILER_BINDIR/$X86_TRIPLE-clang++
 
-readonly SOURCE="$NATIVE/*.cc $CORE/*.cc"
-readonly HEADER="-I$NATIVE/include -I$CORE/include"
-readonly CFLAGS="-std=c++17 -O2 -flto -fno-rtti -fomit-frame-pointer -fuse-ld=lld"
-readonly LDLIBS="-llog"
+readonly HEADERS=$NATIVE/include
+
+readonly LIBSOCKET_SRC=$NATIVE/libsocket
+readonly LIBSOCKET_INC=$HEADERS/libsocket
+
+readonly SOURCES=(
+	$LIBSOCKET_SRC/*.c
+	$LIBSOCKET_SRC/*.cpp
+	$NATIVE/*.cc
+	$CORE/*.cc
+)
+
+readonly HEADERS=(
+	-I$LIBSOCKET_INC
+	-I$HEADERS
+	-I$CORE/include
+)
+
+readonly CFLAGS=(
+	-std=c++17 -O2 -Wno-deprecated -flto -fno-rtti -fomit-frame-pointer -fuse-ld=lld
+)
+
+readonly LDLIBS=(
+	-llog
+)
 
 function compile {
-	$1 $SOURCE $HEADER $CFLAGS $LDLIBS -s -o $BINDIR/acs_$2
+	$1 ${CFLAGS[@]} ${HEADERS[@]} ${LDLIBS[@]} ${SOURCES[@]} -s -o $BINDIR/acs_$2
 
 	if (($? != 0)); then
 		abort "Compilation failed"
