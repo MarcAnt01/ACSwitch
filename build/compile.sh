@@ -28,22 +28,22 @@ readonly X86_TRIPLE=i686-linux-android$API_LEVEL
 readonly COMPILER_ARM=$COMPILER_BINDIR/$ARM_TRIPLE-clang++
 readonly COMPILER_X86=$COMPILER_BINDIR/$X86_TRIPLE-clang++
 
+readonly LIBSOCKET=$NATIVE/libsocket
+readonly LIBSOCKET_HEADER=$LIBSOCKET/include
+
 readonly HEADER=$NATIVE/include
 
-readonly LIBSOCKET_SRC=$NATIVE/libsocket
-readonly LIBSOCKET_INC=$HEADER/libsocket
-
 readonly SOURCES=(
-	$LIBSOCKET_SRC/*.c
-	$LIBSOCKET_SRC/*.cpp
-	$NATIVE/*.cc
+	$LIBSOCKET/*.c
+	$LIBSOCKET/*.cpp
 	$CORE/*.cc
+	$NATIVE/*.cc
 )
 
 readonly HEADERS=(
-	-I$LIBSOCKET_INC
-	-I$HEADER
+	-I$LIBSOCKET_HEADER
 	-I$CORE/include
+	-I$HEADER
 )
 
 readonly CFLAGS=(
