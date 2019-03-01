@@ -20,26 +20,17 @@ readonly ANDROID_NDK=/media/sjaymin/__SHARED_K__/Development/IDE/Android_NDK
 
 readonly WORKDIR=$(dirname $(dirname $BASH_SOURCE))/temp
 
-readonly API_LEVEL=21
+readonly ARM_TRIPLE=arm-linux-androideabi
+readonly X86_TRIPLE=i686-linux-android
 
-readonly ARM_TRIPLE=armv7a-linux-androideabi$API_LEVEL
-readonly X86_TRIPLE=i686-linux-android$API_LEVEL
+readonly ARCH=$1
+readonly TOOL=$2
+
+shift 2
 
 function abort {
 	echo >&2 -e "\n\e[01;33mERROR\e[0m: \e[01;31m$1\e[0m\n"
 	exit 1
-}
-
-function compile {
-	local COMPILER=$1
-	local ARCH=$2
-	shift 2
-
-	$COMPILER $@ -o ./a.out.$ARCH
-
-	if (($? != 0)); then
-		abort "Compilation failed"
-	fi
 }
 
 mkdir $WORKDIR 2>/dev/null
@@ -47,5 +38,11 @@ if ! cd $WORKDIR; then
 	abort "Could not change directory to $WORKDIR"
 fi
 
-compile $ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/$ARM_TRIPLE-clang++ arm $@
-compile $ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/$X86_TRIPLE-clang++ x86 $@
+case $ARCH in
+	arm) $ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/$ARM_TRIPLE-$TOOL $@ ;;
+	x86) $ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/$X86_TRIPLE-$TOOL $@ ;;
+esac
+
+if (($? != 0)); then
+	abort "Run failed"
+fi
