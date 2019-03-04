@@ -18,44 +18,32 @@
 
 SCRIPT_NAME=$(basename $BASH_SOURCE)
 
-readonly BINDIR=$MODULE/bin
-
 readonly COMPILER_BINDIR=$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin
 
 readonly ARM_TRIPLE=armv7a-linux-androideabi$API_LEVEL
 readonly X86_TRIPLE=i686-linux-android$API_LEVEL
 
-readonly COMPILER_ARM=$COMPILER_BINDIR/$ARM_TRIPLE-clang++
-readonly COMPILER_X86=$COMPILER_BINDIR/$X86_TRIPLE-clang++
+readonly ARM_COMPILER=$COMPILER_BINDIR/$ARM_TRIPLE-clang++
+readonly X86_COMPILER=$COMPILER_BINDIR/$X86_TRIPLE-clang++
 
-readonly LIBSOCKET=$NATIVE/libsocket
-readonly LIBSOCKET_HEADER=$LIBSOCKET/include
-
-readonly HEADER=$NATIVE/include
-
-readonly SOURCES=(
-	$LIBSOCKET/*.c
-	$LIBSOCKET/*.cpp
-	$CORE/*.cc
+readonly SFILES=(
 	$NATIVE/*.cc
 )
 
-readonly HEADERS=(
-	-I$LIBSOCKET_HEADER
-	-I$CORE/include
-	-I$HEADER
+readonly HFILES=(
+	-I$NATIVE/include
 )
 
 readonly CFLAGS=(
-	-std=c++17 -O2 -Wno-deprecated -flto -fno-rtti -fomit-frame-pointer -fuse-ld=lld
+	-O2 -flto -fno-rtti -fomit-frame-pointer -fuse-ld=lld
 )
 
 readonly LDLIBS=(
-	-llog
+	-llog -lsocket++
 )
 
 function compile {
-	$1 ${CFLAGS[@]} ${HEADERS[@]} ${LDLIBS[@]} ${SOURCES[@]} -s -o $BINDIR/acs_$2
+	$1 ${SFILES[@]} ${HFILES[@]} ${CFLAGS[@]} -L$MODULE/$2/lib ${LDLIBS[@]} -s -o $MODULE/$2/xbin/acs
 
 	if (($? != 0)); then
 		abort "Compilation failed"
@@ -63,7 +51,7 @@ function compile {
 }
 
 print "Compiling acs binary for arm"
-compile $COMPILER_ARM arm
+compile $ARM_COMPILER arm
 
 print "Compiling acs binary for x86"
-compile $COMPILER_X86 x86
+compile $X86_COMPILER x86

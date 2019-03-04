@@ -22,21 +22,19 @@ readonly ZIPSIGNER=$TOOLSPATH/zipsigner.jar
 
 readonly ZIPNAME=ACSwitch-$VERSION-$CODE-stable
 
-readonly OUTZIP=$OUTDIR/$ZIPNAME-signed.zip
 readonly TEMPZIP=$OUTDIR/$ZIPNAME.tempfile
+readonly OUTZIP=$OUTDIR/$ZIPNAME-signed.zip
 
 function makezip {
 	local ZIPFILE=$1
 	local MODDIR=$2
 
-	cd $MODDIR || abort "Could not change directory to $MODDIR"
+	if ! cd $MODDIR; then
+		abort "Could not change directory to $MODDIR"
+	fi
 
-	find . | while read FILE; do
-		if [[ $FILE != ./.git/* ]]; then
-			if [[ $FILE != ./.git ]]; then
-				zip -u9q $ZIPFILE $FILE
-			fi
-		fi
+	find . ! -path './.git' | while read FILE; do
+		zip -u9q $ZIPFILE $FILE
 	done
 }
 

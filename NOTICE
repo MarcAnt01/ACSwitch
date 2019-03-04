@@ -20,8 +20,8 @@ along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
 zipsigner.jar binary in tools/ folder is developed and copyrighted by @topjohnwu
 and is taken from @osm0sis' "Shell Edify Replacement" thread at xda-developers.
 
-/* Notice for libsocket sources included in native/libsocket/ folder and headers
- * included in native/include/libsocket/ folder.
+/* Notice for libsocket++ library and the header file (socket.h) included in
+ * module/<arch>/lib/ folders and native/include folder respctively.
  */
 
 The committers of the libsocket project, all rights reserved

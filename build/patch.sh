@@ -21,7 +21,7 @@ SCRIPT_NAME=$(basename $BASH_SOURCE)
 readonly INSTALLER_SCRIPT=$MODULE/META-INF/com/google/android/update-binary
 
 readonly DB_RAW=$BUILDDIR/switch.db-raw
-readonly DB_SOURCE=$CORE/database.cc
+readonly DB_SOURCE=$NATIVE/database.cc
 
 readonly SOURCE_BODY=\
 "vector<Database::ControlFile> Database::controlFiles = { {
@@ -42,15 +42,18 @@ function setprop {
 
 function parsenode {
 	set $1
+
+	TRIGGER=$1
+	POS_VAL=$2
+	NEG_VAL=$3
+
 	if [[ $1 != /sys/class/* && $1 != /sys/devices/* ]]; then
-		EVENTS=/sys/class/power_supply/battery/uevent
+		UEVENT=/sys/class/power_supply/battery/uevent
 	else
-		EVENTS=$(dirname $1)/uevent
+		UEVENT=$(dirname $1)/uevent
 	fi
-	NODE=$1
-	VAL_ON=$2
-	VAL_OFF=$3
-	[[ -n $VAL_OFF ]] && return 0 || return 1
+
+	[[ -n $NEG_VAL ]] && return 0 || return 1
 }
 
 setprop MIN_API $API_LEVEL $INSTALLER_SCRIPT
@@ -63,7 +66,7 @@ while read LINE; do
 	if ! parsenode "$LINE"; then
 		abort "Raw database is malformed, invalid entry: \"$LINE\""
 	fi
-	ELEMENTS+=$(printf "$ELEMENT_BODY\n" $EVENTS $NODE $VAL_ON $VAL_OFF)
+	ELEMENTS+=$(printf "$ELEMENT_BODY\n" $UEVENT $TRIGGER $POS_VAL $NEG_VAL)
 done < <(grep -Ev "^$|^#" $DB_RAW)
 
 printf "$SOURCE_BODY\n" "$ELEMENTS" >>$DB_SOURCE

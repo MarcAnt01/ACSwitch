@@ -22,7 +22,6 @@ readonly PROJECT=$(realpath $(dirname $BASH_SOURCE))
 
 readonly NATIVE=$PROJECT/native
 readonly MODULE=$PROJECT/module
-readonly CORE=$NATIVE/core
 
 readonly OUTDIR=$PROJECT/out
 
@@ -34,9 +33,7 @@ readonly TOOLSPATH=$PROJECT/tools
 readonly BUILDDIR=$PROJECT/build
 readonly BUILDER=$BUILDDIR/build.sh
 
-if [[ ! -d $OUTDIR ]]; then
-	mkdir $OUTDIR
-fi
+mkdir $OUTDIR 2>/dev/null
 exec 3>&2 2>$LOGFILE
 
 function abort {
