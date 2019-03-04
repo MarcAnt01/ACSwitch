@@ -2,7 +2,7 @@
 
 ###### Copyright (c) 2019 Jaymin Suthar. All rights reserved.
 
-* [Details](https://github.com/sjayminsgithub/ACSwitch-module/blob/master/README.md)
+* [Details](https://github.com/sjaymin1001/ACSwitch-module/blob/master/README.md)
 
 ## Notes
 
