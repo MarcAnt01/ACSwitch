@@ -2,7 +2,7 @@
 # Copyright (C) 2017-2019, VR25 @ xda-developers
 # License: GPL V3+
 # PWD=/sys/class/power_supply
-# Last updated: Wed, Jan 23, 2019
+# Last updated: Sat, Mar 2, 2019
 
 # I have removed some switches and converted many paths to their absolute equals
 # with permission taken from original author.
@@ -14,6 +14,7 @@
 /sys/class/power_supply/battery/batt_slate_mode 0 1
 /sys/class/power_supply/battery/charge_disable 0 1
 /sys/class/power_supply/battery/charge_enabled 1 0
+/sys/class/power_supply/battery/charger_control 1 0
 /sys/class/power_supply/battery/ChargerEnable 1 0
 /sys/class/power_supply/battery/charging_enabled 1 0
 /sys/class/power_supply/battery/device/Charging_Enable 1 0
@@ -31,8 +32,10 @@
 /sys/class/power_supply/mt-battery/disable_charger 0 1
 /sys/class/power_supply/parallel/charging_enabled 1 0
 /sys/class/power_supply/parallel/input_suspend 0 1
+/sys/class/power_supply/usb-parallel/charging_enabled 1 0
 /sys/devices/platform/battery/ChargerEnable 1 0
 /sys/devices/platform/huawei_charger/enable_charger 1 0
 /sys/devices/platform/mt-battery/disable_charger 0 1
 /sys/devices/platform/omap/omap_i2c.3/i2c-3/3-005f/charge_enable 1 0
 /sys/module/pm8921_charger/parameters/disabled 0 1
+/sys/power/pnpmgr/battery/charging_enabled 1 0
