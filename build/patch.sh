@@ -24,7 +24,7 @@ readonly DB_RAW=$BUILDDIR/switch.db-raw
 readonly DB_SOURCE=$NATIVE/database.cc
 
 readonly SOURCE_BODY=\
-"vector<Database::ControlFile> Database::controlFiles = { {
+"vector<Database::Switch> Database::switches = { {
 %s
 } };"
 
