@@ -2,6 +2,8 @@ Advanced Charging Switch (ACSwitch)
 
 Copyright (c) 2019 Jaymin Suthar. All rights reserved.
 
+This project (ACSwitch-build) is a submodule and part of ACSwitch project.
+
 ACSwitch is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, only version 3 of the License.
@@ -14,13 +16,25 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
 
-/* Notice for zipsigner.jar binary included in tools/ folder.
+/**
+ * Notice for zipsigner.jar binary included in tools/ folder.
  */
 
-zipsigner.jar binary in tools/ folder is developed and copyrighted by @topjohnwu
-and is taken from @osm0sis' "Shell Edify Replacement" thread at xda-developers.
+Magisk, including all git submodules are free software:
+you can redistribute it and/or modify it under the terms of the
+GNU General Public License as published by the Free Software Foundation,
+either version 3 of the License, or (at your option) any later version.
 
-/* Notice for libsocket++ library and the header file (socket.h) included in
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * Notice for libsocket++ library and the header file (socket.h) included in
  * module/<arch>/lib/ folders and native/include folder respctively.
  */
 
