@@ -4,19 +4,19 @@
 		{
 			"label": "Build ACSwitch",
 			"type": "shell",
-			"command": "${workspaceFolder}/build.sh",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
 			"options": {
 				"env": {
 					"ANDROID_NDK_HOME": "/media/sjaymin/__SHARED_K__/Development/IDE/Android_NDK"
 				}
 			},
+			"command": "${workspaceFolder}/build.sh",
 			"presentation": {
 				"reveal": "always",
 				"panel": "new"
-			},
-			"group": {
-				"kind": "build",
-				"isDefault": true
 			}
 		}
 	]

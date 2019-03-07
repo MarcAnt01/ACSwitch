@@ -18,23 +18,19 @@
 
 SCRIPT_NAME=$(basename $BASH_SOURCE)
 
-readonly ZIPSIGNER=$TOOLSPATH/zipsigner.jar
-
 readonly ZIPNAME=ACSwitch-$VERSION-$CODE-stable
 
 readonly TEMPZIP=$OUTDIR/$ZIPNAME.tempfile
 readonly OUTZIP=$OUTDIR/$ZIPNAME-signed.zip
 
+readonly ZIPSIGNER=$TOOLSPATH/zipsigner.jar
+
 function makezip {
-	local ZIPFILE=$1
-	local MODDIR=$2
-
-	if ! cd $MODDIR; then
-		abort "Could not change directory to $MODDIR"
+	if ! cd $2; then
+		abort "Could not change directory to $2"
 	fi
-
 	find . ! -path './.git' | while read FILE; do
-		zip -u9q $ZIPFILE $FILE
+		zip -u9q $1 $FILE
 	done
 }
 

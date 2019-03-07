@@ -23,9 +23,9 @@ readonly PROJECT=$(realpath $(dirname $BASH_SOURCE))
 readonly NATIVE=$PROJECT/native
 readonly MODULE=$PROJECT/module
 
-readonly OUTDIR=$PROJECT/out
-
 readonly API_LEVEL=21
+
+readonly OUTDIR=$PROJECT/out
 
 readonly LOGFILE=$OUTDIR/build.log
 

@@ -18,15 +18,10 @@
 
 SCRIPT_NAME=$(basename $BASH_SOURCE)
 
-readonly INSTALLER_SCRIPT=$MODULE/META-INF/com/google/android/update-binary
+readonly MODULE_INSTALLER=$MODULE/META-INF/com/google/android/update-binary
 
 readonly DB_RAW=$BUILDDIR/switch.db-raw
 readonly DB_SOURCE=$NATIVE/database.cc
-
-readonly SOURCE_BODY=\
-"vector<Database::Switch> Database::switches = { {
-%s
-} };"
 
 readonly ELEMENT_BODY=\
 "	{
@@ -35,6 +30,11 @@ readonly ELEMENT_BODY=\
 		\"%s\",
 		\"%s\"
 	},"
+
+readonly SOURCE_BODY=\
+"vector<Database::Switch> Database::switch_ = { {
+%s
+} };"
 
 function setprop {
 	sed -i "s|^$1=.*|$1=$2|g" $3
@@ -56,7 +56,7 @@ function parsenode {
 	[[ -n $NEG_VAL ]] && return 0 || return 1
 }
 
-setprop MIN_API $API_LEVEL $INSTALLER_SCRIPT
+setprop MIN_API $API_LEVEL $MODULE_INSTALLER
 
 print "Generating database source file"
 

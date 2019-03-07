@@ -16,9 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
 
-SCRIPT_NAME=$(basename $BASH_SOURCE)
-
-rm -rf $TEMPZIP
+rm -f $TEMPZIP
 
 (
 	git --work-tree $PROJECT --git-dir $PROJECT/.git reset --hard

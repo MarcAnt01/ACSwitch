@@ -16,9 +16,9 @@
 # You should have received a copy of the GNU General Public License
 # along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
 
-readonly ANDROID_NDK=/media/sjaymin/__SHARED_K__/Development/IDE/Android_NDK
-
 readonly WORKDIR=$(dirname $(dirname $BASH_SOURCE))/temp
+
+readonly ANDROID_NDK=/media/sjaymin/__SHARED_K__/Development/IDE/Android_NDK
 
 readonly ARM_TRIPLE=arm-linux-androideabi
 readonly X86_TRIPLE=i686-linux-android
