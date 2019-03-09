@@ -34,8 +34,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Notice for libsocket++ library and the header file (socket.h) included in
- * module/<arch>/lib/ folders and native/include folder respctively.
+ * Notice for the libsocket++.so binaries in module/<arch>/lib/ (arch: arm, x86)
+ * folders and socket.h header file included in native/include folder.
+ *
+ * I have just compiled those parts which I needed for ACSwitch into libsocket++
+ * SO library, my stripped and partially reformatted sources can be found at git
+ * as https://github.com/sjaymin1001/libsocket.
  */
 
 The committers of the libsocket project, all rights reserved

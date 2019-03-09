@@ -10,10 +10,9 @@
   provided only for Linux officially, Mac and Windows users might need to modify
   them to build on those respective platforms.
 
-* Build scripts build acs binary for API level 21 by default, though there is no
-  API-specific implementation in native part, you might target different APIs to
-  achieve performance, bugfixes or smaller binary sizes, you can do so by simply
-  setting `API_LEVEL` in `build.sh`.
+* Build scripts build acs binary for API level 21 by default, but you can target
+  different API levels by simply setting `API_LEVEL` in build.sh as there are no
+  API-specific implementations in native part.
 
 * Build scripts only support NDK r19 or newer due to toolchain path changes.
 
