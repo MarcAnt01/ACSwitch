@@ -37,7 +37,7 @@ readonly HEADER=(
 )
 
 readonly CFLAGS=(
-	-O2 -flto -fno-rtti -fomit-frame-pointer -fuse-ld=lld
+	-O2 -fno-rtti -fomit-frame-pointer -flto -fuse-ld=lld
 )
 
 readonly LDLIBS=(
