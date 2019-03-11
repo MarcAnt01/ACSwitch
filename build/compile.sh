@@ -20,6 +20,8 @@ SCRIPT_NAME=$(basename $BASH_SOURCE)
 
 readonly BINDIR=$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin
 
+readonly API_LEVEL=21
+
 readonly ARM_TRIPLE=armv7a-linux-androideabi$API_LEVEL
 readonly X86_TRIPLE=i686-linux-android$API_LEVEL
 
@@ -46,7 +48,7 @@ function compile {
 	$1 ${SOURCE[@]} ${HEADER[@]} ${CFLAGS[@]} -L$MODULE/$2/lib ${LDLIBS[@]} -s -o $MODULE/$2/xbin/acs
 
 	if (($? != 0)); then
-		abort "Compilation failed"
+		abort "Compile command failed"
 	fi
 }
 

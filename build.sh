@@ -23,8 +23,6 @@ readonly PROJECT=$(realpath $(dirname $BASH_SOURCE))
 readonly NATIVE=$PROJECT/native
 readonly MODULE=$PROJECT/module
 
-readonly API_LEVEL=21
-
 readonly OUTDIR=$PROJECT/out
 
 readonly LOGFILE=$OUTDIR/build.log
@@ -45,10 +43,10 @@ function abort {
 }
 
 if [[ -z $ANDROID_NDK_HOME ]]; then
-	abort "Please export Android NDK path to ANDROID_NDK_HOME"
+	abort "Please export Android NDK path to ANDROID_NDK_HOME environment variable"
 fi
 if ! command -v zip >/dev/null; then
-	abort "Please install package zip to compress module code"
+	abort "Please install package \"zip\" required to compress a flashable zip file"
 fi
 
 echo -e ""
@@ -58,6 +56,6 @@ source $BUILDER
 echo -e ""
 echo -e "Output zip file: \e[01;32m$OUTZIP\e[0m"
 echo -e ""
-echo -e "\e[01;35mIf you had made any changes to the original sources that could be benificial to\e[0m"
-echo -e "\e[01;35mothers as well, please create a Pull Request back with your change/patches.\e[0m"
+echo -e "\e[01;35mIf you made any changes to original sources, you should consider creating a Pull\e[0m"
+echo -e "\e[01;35mRequest back with your changes so that others too can benefit from them as well.\e[0m"
 echo -e ""
