@@ -18,8 +18,6 @@
 
 SCRIPT_NAME=$(basename $BASH_SOURCE)
 
-readonly MODULE_INSTALLER=$MODULE/META-INF/com/google/android/update-binary
-
 readonly DB_RAW=$BUILDDIR/switch.db-raw
 readonly DB_SOURCE=$NATIVE/database.cc
 
@@ -55,8 +53,6 @@ function parsenode {
 
 	[[ -n $NEG_VAL ]] && return 0 || return 1
 }
-
-setprop MIN_API $API_LEVEL $MODULE_INSTALLER
 
 print "Generating database source file"
 
