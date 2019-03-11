@@ -16,8 +16,6 @@
 # You should have received a copy of the GNU General Public License
 # along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
 
-SCRIPT_NAME=$(basename $BASH_SOURCE)
-
 readonly ANDROID_NDK=$ANDROID_NDK_HOME
 
 readonly PATCHER=$BUILDDIR/patch.sh
