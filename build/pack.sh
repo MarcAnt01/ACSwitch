@@ -27,7 +27,7 @@ readonly ZIPSIGNER=$TOOLSPATH/zipsigner.jar
 
 function makezip {
 	if ! cd $2; then
-		abort "Could not change directory to $2"
+		abort "Could not change current working directory to $2"
 	fi
 	find . ! -path './.git' | while read FILE; do
 		zip -u9q $1 $FILE

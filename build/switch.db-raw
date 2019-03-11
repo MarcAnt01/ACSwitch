@@ -4,9 +4,10 @@
 # PWD=/sys/class/power_supply
 # Last updated: Sat, Mar 2, 2019
 
-# I have removed some switches and converted many paths to their absolute equals
-# with permission taken from original author.
-#                                                                - Jaymin Suthar
+# I have just kept those switches with which I could deal using standard C++ API
+# and replaced many of them by their absolute equivalents. The original database
+# can be found at git as
+# https://github.com/Magisk-Modules-Repo/acc/blob/master/common/switches.txt.
 
 /proc/smb1357_disable_chrg 0 1
 /sys/class/hw_power/charger/charge_data/enable_charger 1 0

@@ -64,7 +64,7 @@ ELEMENTS=""
 
 while read LINE; do
 	if ! parsenode "$LINE"; then
-		abort "Raw database is malformed, invalid entry: \"$LINE\""
+		abort "Raw database (switch.db-raw) is malformed, invalid entry: \"$LINE\""
 	fi
 	ELEMENTS+=$(printf "$ELEMENT_BODY\n" $UEVENT $TRIGGER $POS_VAL $NEG_VAL)
 done < <(grep -Ev "^$|^#" $DB_RAW)

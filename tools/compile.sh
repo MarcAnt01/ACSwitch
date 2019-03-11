@@ -36,7 +36,7 @@ function abort {
 
 mkdir $WORKDIR 2>/dev/null
 if ! cd $WORKDIR; then
-	abort "Could not change directory to $WORKDIR"
+	abort "Could not change current working directory to $WORKDIR"
 fi
 
 case $ARCH in
@@ -45,5 +45,5 @@ case $ARCH in
 esac
 
 if (($? != 0)); then
-	abort "Compilation failed"
+	abort "Command \`clang++ $*\` failed"
 fi

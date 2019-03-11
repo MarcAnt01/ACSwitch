@@ -2,7 +2,7 @@ Advanced Charging Switch (ACSwitch)
 
 Copyright (c) 2019 Jaymin Suthar. All rights reserved.
 
-This project (ACSwitch-build) is a submodule and part of ACSwitch project.
+This project (ACSwitch-build) is a subproject and part of ACSwitch project.
 
 ACSwitch is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Notice for the libsocket++.so binaries in module/<arch>/lib/ (arch: arm, x86)
+ * Notice for libsocket++.so SO libraries in module/<arch>/lib/ (arch: arm, x86)
  * folders and socket.h header file included in native/include folder.
  *
  * I have just compiled those parts which I needed for ACSwitch into libsocket++
