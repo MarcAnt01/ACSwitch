@@ -1,6 +1,8 @@
 **			text	eol=lf
 
+*.cc		text	eol=lf
 *.db-raw	text	eol=lf
+*.h			text	eol=lf
 *.json		text	eol=lf
 *.md		text	eol=lf
 *.sh		text	eol=lf
