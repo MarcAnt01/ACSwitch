@@ -17,11 +17,12 @@
 
 #include <cerrno>
 #include <cstring>
+#include <libgen.h>
 
 #include "exception.h"
 
 [[noreturn]] void Exception::_throw(const string &file, int line, const string &err) {
-	string error = file + ":" + to_string(line) + ": " + err;
+	string error = (string) basename(file.c_str()) + ":" + to_string(line) + ": " + err;
 	if (errno > 0) {
 		error += " (" + (string) strerror(errno) + ")";
 	}
