@@ -17,5 +17,3 @@
 # along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
 
 rm -f $TEMPZIP
-
-git --work-tree $PROJECT --git-dir $PROJECT/.git reset --hard >/dev/null
