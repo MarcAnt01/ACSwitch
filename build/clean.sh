@@ -18,8 +18,4 @@
 
 rm -f $TEMPZIP
 
-(
-	git --work-tree $PROJECT --git-dir $PROJECT/.git reset --hard
-	git --work-tree $NATIVE --git-dir $PROJECT/.git/modules/native reset --hard
-	git --work-tree $MODULE --git-dir $PROJECT/.git/modules/module reset --hard
-) >/dev/null
+git --work-tree $PROJECT --git-dir $PROJECT/.git reset --hard >/dev/null
