@@ -15,6 +15,8 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <cerrno>
+
 #include "exception.h"
 #include "ipc.h"
 #include "module.h"
@@ -29,11 +31,11 @@ void IPC::initServer() {
 		server.setup(SOCKET_PATH, O_NONBLOCK);
 
 	} catch (const socket_exception &e) {
-		switch (e.err) {
+		switch (e.errnum) {
 			case EADDRINUSE:
 			case EINVAL:
 				throw("The daemon is already running");
-			default: throw(e.mesg);
+			default: throw(e.what);
 		}
 	}
 }
@@ -47,14 +49,14 @@ int IPC::receiveClient() {
 	while (req == -1) {
 		try {
 			client = server.accept();
-			client->rcv(&req, sizeof(req));
+			client->recv(&req, sizeof(req));
 
 		} catch (const socket_exception &e) {
-			switch (e.err) {
+			switch (e.errnum) {
 				case ECONNABORTED:
 				case EAGAIN:
 					break;
-				default: throw(e.mesg);
+				default: throw(e.what);
 			}
 		}
 	}
@@ -63,7 +65,7 @@ int IPC::receiveClient() {
 
 void IPC::answerClient(int ret) {
 	try {
-		client->snd(&ret, sizeof(ret));
+		client->send(&ret, sizeof(ret));
 	} catch (const socket_exception &e) {}
 	delete client;
 }
@@ -74,11 +76,11 @@ int IPC::requestDaemon(int req) {
 	while (ret == -1) {
 		try {
 			socket_client client(SOCKET_PATH, O_NONBLOCK);
-			client.snd(&req, sizeof(req));
-			client.rcv(&ret, sizeof(ret));
+			client.send(&req, sizeof(req));
+			client.recv(&ret, sizeof(ret));
 
 		} catch (const socket_exception &e) {
-			switch (e.err) {
+			switch (e.errnum) {
 				case EADDRINUSE:
 				case EALREADY:
 				case EINPROGRESS:
@@ -86,7 +88,7 @@ int IPC::requestDaemon(int req) {
 				case EISCONN:
 				case ECONNREFUSED:
 					break;
-				default: throw(e.mesg);
+				default: throw(e.what);
 			}
 		}
 	}

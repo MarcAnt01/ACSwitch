@@ -1,22 +1,18 @@
 #pragma once
 
-#include <cerrno>
 #include <memory>
 #include <string>
 #include <sys/socket.h>
-#include <sys/types.h>
-
-#define LIBSOCKET_STREAM 1
 
 #define LIBSOCKET_READ 1
 #define LIBSOCKET_WRITE 2
 
 extern "C" {
-extern int create_unix_stream_socket(const char *path, int flags);
-extern int destroy_unix_socket(int sfd);
-extern int shutdown_unix_stream_socket(int sfd, int method);
-extern int create_unix_server_socket(const char *path, int socktype, int flags);
-extern int accept_unix_stream_socket(int sfd, int flags);
+	int create_socket(const char *path, int flags);
+	int destroy_socket(int fd);
+	int shutdown_socket(int fd, int method);
+	int create_server_socket(const char *path, int flags);
+	int accept_socket(int fd, int flags);
 }
 
 using namespace std;
@@ -24,77 +20,81 @@ using namespace std;
 namespace libsocket
 {
 	struct socket_exception {
-		int err;
-		string mesg;
+		int errnum;
+		string what;
 
-		socket_exception(const string& file,int line,const string& message, bool show_errno = true);
+		socket_exception(const string &message);
 	};
 
 	class socket {
-		protected: int sfd;
-		protected: bool is_nonblocking;
-		protected: bool close_on_destructor;
+		protected:
+			int fd;
 
-		public: socket(void);
-		public: socket(const socket &) = delete;
-		public: socket(socket &&);
+		public:
+			socket();
+			socket(const socket &) = delete;
+			socket(socket &&other);
+			virtual ~socket();
 
-		public: virtual ~socket();
+			int getfd() const;
 
-		public: virtual int destroy(void);
-
-		public: int getfd(void) const;
-
-		public: int set_sock_opt(int level, int optname, const char *optval, socklen_t optlen) const;
+			virtual int destroy();
+			int setsockopt(int level, int opt, const char *val, socklen_t len) const;
 	};
 
 	class unix_socket : public virtual socket {
-		protected: string _path;
+		protected:
+			string _path;
 
-		public: unix_socket();
-
-		public: string get_path(void);
+		public:
+			unix_socket();
+			string getpath();
 	};
 
 	class stream_client_socket : public virtual socket {
-		protected: bool shut_rd;
-		protected: bool shut_wr;
+		protected:
+			bool shut_rd;
+			bool shut_wr;
 
-		public: stream_client_socket();
-		public: stream_client_socket(const stream_client_socket &) = delete;
-		public: stream_client_socket(stream_client_socket && other) : socket(std::move(other)), shut_rd(false), shut_wr(false) {}
+		public:
+			stream_client_socket();
+			stream_client_socket(const stream_client_socket &) = delete;
+			stream_client_socket(stream_client_socket &&other)
+				: socket(move(other)), shut_rd(false), shut_wr(false) {}
 
-		public: ssize_t snd(const void *buf, size_t len, int flags = 0);
-		public: ssize_t rcv(void *buf, size_t len, int flags = 0);
+			ssize_t send(const void *buf, size_t len, int flags = 0);
+			ssize_t recv(void *buf, size_t len, int flags = 0);
+
+			void shutdown(int method = LIBSOCKET_WRITE);
 
 		friend stream_client_socket & operator<<(stream_client_socket &sock, const char *str);
 		friend stream_client_socket & operator<<(stream_client_socket &sock, const string &str);
 		friend stream_client_socket & operator>>(stream_client_socket &sock, string &dest);
-
-		public: void shutdown(int method = LIBSOCKET_WRITE);
 	};
 
 	class unix_stream_client : public unix_socket, public stream_client_socket {
-		public: unix_stream_client(void);
-		public: unix_stream_client(const char *path, int socket_flags = 0);
-		public: unix_stream_client(const string &path, int socket_flags = 0);
+		public:
+			unix_stream_client();
+			unix_stream_client(const char *path, int flags = 0);
+			unix_stream_client(const string &path, int flags = 0);
 
-		public: void connect(const char *path, int socket_flags = 0);
-		public: void connect(const string &path, int socket_flags = 0);
+			void connect(const char *path, int flags = 0);
+			void connect(const string &path, int flags = 0);
 
 		friend class unix_stream_server;
 	};
 
 	class unix_stream_server : public unix_socket {
-		public: unix_stream_server(void);
-		public: unix_stream_server(const char *path, int flags = 0);
-		public: unix_stream_server(const string &path, int flags = 0);
+		public:
+			unix_stream_server();
+			unix_stream_server(const char *path, int flags = 0);
+			unix_stream_server(const string &path, int flags = 0);
 
-		public: void setup(const char *path, int flags = 0);
-		public: void setup(const string &path, int flags = 0);
+			void setup(const char *path, int flags = 0);
+			void setup(const string &path, int flags = 0);
 
-		public: unix_stream_client * accept(int flags = 0);
-		public: unique_ptr<unix_stream_client> accept2(int flags = 0);
+			unix_stream_client * accept(int flags = 0);
+			unique_ptr<unix_stream_client> accept2(int flags = 0);
 	};
 } // END NAMESPACE LIBSOCKET
 
