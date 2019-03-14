@@ -46,7 +46,7 @@ if [[ -z $ANDROID_NDK_HOME ]]; then
 	abort "Please export Android NDK path to ANDROID_NDK_HOME environment variable"
 fi
 if ! command -v zip >/dev/null; then
-	abort "Please install package \"zip\" required to compress a flashable zip file"
+	abort "Please install package \"zip\" required to compress source code into zip"
 fi
 
 echo -e ""

@@ -1,30 +1,26 @@
 # Advanced Charging Switch
 
-* [Details](https://github.com/sjaymin1001/ACSwitch-module/blob/master/README.md)
+## [Details](https://github.com/Magisk-Modules-Repo/ACSwitch/blob/devel/README.md)
 
-## Notes
+## Requirements
 
-* Build scripts are provided for Linux only and building has been tested only on
-  Ubuntu 18.10 Desktop, if you use a Mac or a Windows environment, you can build
-  ACSwitch with some little modifications to scripts.
-
-* Build scripts only support NDK r19 or newer due to toolchain path changes.
+1. Android NDK r19 or newer.
+2. `zip` available in PATH.
 
 ## Building
 
-- Download latest stable Android NDK and export its path to ANDROID_NDK_HOME env
-  variable, i.e., `export ANDROID_NDK_HOME=/path/to/android/ndk`
+Building is supported on Linux only and has been tested on Ubuntu 18.10 Desktop.
+Mac environments may need some changes to the scripts and Windows users may need
+WSL along with some changes to paths. To build ACSwitch,
 
-- Make sure you have `zip` available in your PATH, i.e., `sudo apt install zip`
+1. Export Android NDK path to `ANDROID_NDK_HOME` environment variable.
+2. Run `./build.sh` from root of ACSwitch project folder.
 
-- Run `./build.sh`, this wrapper script will call around other scripts which may
-  patch source files, compile acs binaries and pack a recovery flashable zip out
-  of them. If you need just the binaries, you can extract them out of the zip.
-
-- The resulting zip will be put into out/ folder along with build.log containing
-  build errors (if any), always check those logs prior to use/deploying the zip.
+The build process will configure source files, compile acs binaries and create a
+recovery flashable zip. Output zip will be placed into `out/` folder and stderr,
+if any, will be dumped into `out/build.log` file.
 
 ## Legal
 
-* Copyright (c) 2019 Jaymin Suthar. All rights reserved.
-* See file NOTICE in project root for licensing information and more details.
+Copyright (c) 2019 Jaymin Suthar. All rights reserved.
+See file NOTICE in project root for licensing information and more details.

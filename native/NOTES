@@ -1,5 +1,3 @@
 - There is no progress output implementation for now.
-- Every error described with a string must be thrown.
-- Socket exceptions must be caught inside IPC:: class.
-- Daemon exceptions must be caught inside Daemon:: class.
-- Only Commandline:: may catch other exceptions.
+- Every error should be reported by throwing exceptions.
+- Only IPC::, Daemon:: and Commandline:: may catch them.

@@ -1,4 +1,5 @@
-LEFT FOR THE FUTURE...
-- Optimize code, letting the heavy on hardware.
-- Optimize Daemon::runServer() implementation.
+LEFT FOR THE NEXT VERSION:
+
 - Add progress messages and log them as well.
+- Optimize code letting the heavy on hardware.
+- Optimize Daemon::runServer() implementation.
