@@ -17,4 +17,3 @@
 # along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
 
 rm -f $TEMPZIP
-source $GITTER !

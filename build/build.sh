@@ -18,7 +18,6 @@
 
 readonly ANDROID_NDK=$ANDROID_NDK_HOME
 
-readonly GITTER=$BUILDDIR/git.sh
 readonly PATCHER=$BUILDDIR/patch.sh
 readonly COMPILER=$BUILDDIR/compile.sh
 readonly PACKER=$BUILDDIR/pack.sh
@@ -35,7 +34,6 @@ function getprop {
 readonly VERSION=$(getprop version $MODULE/module.prop)
 readonly CODE=$(getprop versionCode $MODULE/module.prop)
 
-source $GITTER
 source $PATCHER
 source $COMPILER
 source $PACKER
