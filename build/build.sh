@@ -18,6 +18,8 @@
 
 readonly ANDROID_NDK=$ANDROID_NDK_HOME
 
+readonly MODINFO=$MODULE/module.prop
+
 readonly PATCHER=$BUILDDIR/patch.sh
 readonly COMPILER=$BUILDDIR/compile.sh
 readonly PACKER=$BUILDDIR/pack.sh
@@ -31,8 +33,14 @@ function getprop {
 	sed -n "s/^$1=//p" $2
 }
 
-readonly VERSION=$(getprop version $MODULE/module.prop)
-readonly CODE=$(getprop versionCode $MODULE/module.prop)
+function setprop {
+	sed -i "s/^$1=.*/$1=$2/g" $3
+}
+
+readonly VERSION=$(getprop version $MODINFO)
+readonly CODE=$(($(getprop versionCode $MODINFO) + 1))
+
+setprop versionCode $CODE $MODINFO
 
 source $PATCHER
 source $COMPILER
