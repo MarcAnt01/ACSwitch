@@ -1,1 +1,3 @@
-None!
+This repo may reference commits to the submodule, but they won't be pushed until
+a new release version is available since devel branch is gone and Magisk Manager
+packs a zip based on master branch of the module.
