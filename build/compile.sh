@@ -19,6 +19,7 @@
 SCRIPT_NAME=$(basename $BASH_SOURCE)
 
 readonly BINDIR=$MODULE/bin
+readonly OUTBIN=$BINDIR/acs_\$2
 
 readonly NDK_BINDIR=$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin
 
@@ -43,11 +44,11 @@ readonly CFLAGS=(
 )
 
 readonly LDLIBS=(
-	-lsocket++ -static
+	-L$NATIVE/lib -lsocket++_\$2 -static
 )
 
 function compile {
-	$1 ${SOURCE[@]} ${HEADER[@]} ${CFLAGS[@]} -L$TOOLSPATH/lib/$2 ${LDLIBS[@]} -s -o $BINDIR/acs_$2
+	eval $1 ${SOURCE[@]} ${HEADER[@]} ${CFLAGS[@]} ${LDLIBS[@]} -s -o $OUTBIN
 
 	if (($? != 0)); then
 		abort "Compile command failed"
