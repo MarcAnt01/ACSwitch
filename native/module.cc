@@ -66,7 +66,10 @@ const string Module::HELP =
 "                        Launch or kill the ACSwitch daemon. Remember, Automation\n"
 "                        and charging methods, both depend on the daemon to work.\n"
 "\n"
-"        [--info]        Print battery information and ACSwitch settings.\n";
+"        [--info]        Print battery information and ACSwitch settings.\n"
+"\n"
+"Note that ACSwitch does not print anything but errors, if any, on terminal, thus\n"
+"if everything is working as expected, you will find nothing on terminal screen.\n";
 
 [[noreturn]] void Module::printHelp(const vector<string> &args) noexcept {
 	cerr << HELP << endl;
