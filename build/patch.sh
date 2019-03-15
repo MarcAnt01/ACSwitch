@@ -34,10 +34,6 @@ readonly SOURCE_BODY=\
 %s
 } };"
 
-function setprop {
-	sed -i "s|^$1=.*|$1=$2|g" $3
-}
-
 function parsenode {
 	set $1
 

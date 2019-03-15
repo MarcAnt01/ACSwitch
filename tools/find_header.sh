@@ -26,13 +26,11 @@ readonly HEADER_ALL=(
 	$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include
 )
 
-readonly HEADER_NAME=$1
-
 HEADERS_FOUND=()
 
 while read HEADER; do
 	HEADERS_FOUND+=($HEADER)
-done < <(find ${HEADER_ALL[@]} -type f -name $HEADER_NAME 2>/dev/null)
+done < <(find ${HEADER_ALL[@]} -type f -name $1 2>/dev/null)
 
 if ((${#HEADERS_FOUND[@]} > 0)); then
 	code --new-window ${HEADERS_FOUND[@]}

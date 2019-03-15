@@ -19,7 +19,7 @@
 SCRIPT_NAME=$(basename $BASH_SOURCE)
 
 readonly BINDIR=$MODULE/bin
-readonly OUTBIN=$BINDIR/acs_\$2
+readonly OUTBIN=$BINDIR/acs_\$1
 
 readonly NDK_BINDIR=$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin
 
@@ -44,11 +44,11 @@ readonly CFLAGS=(
 )
 
 readonly LDLIBS=(
-	-L$NATIVE/lib -lsocket++_\$2 -static
+	-L$NATIVE/lib -lsocket++_\$1 -static
 )
 
 function compile {
-	eval $1 ${SOURCE[@]} ${HEADER[@]} ${CFLAGS[@]} ${LDLIBS[@]} -s -o $OUTBIN
+	eval $2 ${SOURCE[@]} ${HEADER[@]} ${CFLAGS[@]} ${LDLIBS[@]} -s -o $OUTBIN
 
 	if (($? != 0)); then
 		abort "Compile command failed"
@@ -56,7 +56,7 @@ function compile {
 }
 
 print "Compiling acs binary for arm"
-compile $ARM_COMPILER arm
+compile arm $ARM_COMPILER
 
 print "Compiling acs binary for x86"
-compile $X86_COMPILER x86
+compile x86 $X86_COMPILER
