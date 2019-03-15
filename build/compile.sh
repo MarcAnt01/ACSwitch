@@ -18,15 +18,17 @@
 
 SCRIPT_NAME=$(basename $BASH_SOURCE)
 
-readonly BINDIR=$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin
+readonly BINDIR=$MODULE/bin
+
+readonly NDK_BINDIR=$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin
 
 readonly API_LEVEL=21
 
 readonly ARM_TRIPLE=armv7a-linux-androideabi$API_LEVEL
 readonly X86_TRIPLE=i686-linux-android$API_LEVEL
 
-readonly ARM_COMPILER=$BINDIR/$ARM_TRIPLE-clang++
-readonly X86_COMPILER=$BINDIR/$X86_TRIPLE-clang++
+readonly ARM_COMPILER=$NDK_BINDIR/$ARM_TRIPLE-clang++
+readonly X86_COMPILER=$NDK_BINDIR/$X86_TRIPLE-clang++
 
 readonly SOURCE=(
 	$NATIVE/*.cc
@@ -41,11 +43,11 @@ readonly CFLAGS=(
 )
 
 readonly LDLIBS=(
-	-lsocket++
+	-lsocket++ -static
 )
 
 function compile {
-	$1 ${SOURCE[@]} ${HEADER[@]} ${CFLAGS[@]} -L$MODULE/$2/lib ${LDLIBS[@]} -s -o $MODULE/$2/xbin/acs
+	$1 ${SOURCE[@]} ${HEADER[@]} ${CFLAGS[@]} -L$TOOLSPATH/lib/$2 ${LDLIBS[@]} -s -o $BINDIR/acs_$2
 
 	if (($? != 0)); then
 		abort "Compile command failed"
