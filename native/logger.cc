@@ -15,16 +15,25 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <chrono>
 #include <iostream>
 
 #include "logger.h"
 #include "module.h"
 
 using namespace std;
+using namespace chrono;
 
 ofstream Logger::logfile(Module::STORAGE + "/.logs");
 
+char * Logger::getCurrentTime() noexcept {
+	time_t currentTime = system_clock::to_time_t(system_clock::now());
+	char *currentTimeFull = ctime(&currentTime);
+	currentTimeFull[strlen(currentTimeFull) - 1] = '\0';
+	return currentTimeFull;
+}
+
 void Logger::logE(const string &err) noexcept {
 	cerr << err << endl;
-	logfile << err << endl;
+	logfile << getCurrentTime() << ": " << err << endl;
 }

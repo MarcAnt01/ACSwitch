@@ -25,6 +25,7 @@ using namespace std;
 class Logger {
 	private:
 		static ofstream logfile;
+		static char * getCurrentTime() noexcept;
 	public:
 		static void logE(const string &err) noexcept;
 };
