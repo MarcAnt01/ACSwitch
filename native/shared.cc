@@ -16,10 +16,10 @@
  */
 
 #include <fstream>
+#include <iostream>
 #include <unistd.h>
 
 #include "exception.h"
-#include "logger.h"
 #include "module.h"
 #include "shared.h"
 
@@ -31,7 +31,7 @@ bool Shared::acquireRoot() noexcept {
 	if (seteuid(UID_ROOT) == 0) {
 		return true;
 	} else {
-		Logger::logE("Could not acquire root access");
+		cerr << "Could not acquire root access" << endl;
 		return false;
 	}
 }

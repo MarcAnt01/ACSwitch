@@ -16,6 +16,7 @@
  */
 
 #include <chrono>
+#include <iostream>
 #include <thread>
 
 #include "battery.h"
@@ -23,12 +24,12 @@
 #include "daemon.h"
 #include "exception.h"
 #include "ipc.h"
-#include "logger.h"
 #include "module.h"
 #include "sanity.h"
 #include "setup.h"
 #include "utility.h"
 
+using namespace std;
 using namespace chrono;
 using namespace this_thread;
 
@@ -122,7 +123,7 @@ void Daemon::clientHandler() noexcept {
 			handleRequest(IPC::receiveClient());
 
 		} catch (const exception &e) {
-			Logger::logE(e.what());
+			cerr << e.what() << endl;
 			IAmKilled = true;
 		}
 	}
@@ -138,7 +139,7 @@ void Daemon::switchHandler() noexcept {
 			sleep_for(seconds(Sanity::SLEEP_DELAY));
 		}
 	} catch (const exception &e) {
-		Logger::logE(e.what());
+		cerr << e.what() << endl;
 		IAmKilled = true;
 	}
 }
@@ -181,7 +182,7 @@ void Daemon::handleArgs(const vector<string> &args) {
 		switchHandlerThread = thread(switchHandler);
 
 	} catch (const exception &e) {
-		Logger::logE(e.what());
+		cerr << e.what() << endl;
 		IAmKilled = true;
 	}
 	try {

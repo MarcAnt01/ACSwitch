@@ -15,15 +15,18 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <iostream>
+
 #include "commandline.h"
 #include "config.h"
 #include "daemon.h"
 #include "exception.h"
-#include "logger.h"
 #include "method.h"
 #include "module.h"
 #include "setup.h"
 #include "utility.h"
+
+using namespace std;
 
 const array<Commandline::Option, 7> Commandline::options = { {
 	{ "--toggle",		1,	1,	true,	Config::toggleAutomation },
@@ -86,7 +89,7 @@ bool Commandline::handleArgs(int argc, const char *argv[]) noexcept {
 			options[optsIndex].handler(args);
 
 		} catch (const exception &e) {
-			Logger::logE(e.what());
+			cerr << e.what() << endl;
 			return false;
 		}
 	}
