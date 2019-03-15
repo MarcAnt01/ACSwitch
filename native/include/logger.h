@@ -17,13 +17,14 @@
 
 #pragma once
 
+#include <fstream>
 #include <string>
 
 using namespace std;
 
 class Logger {
 	private:
-		static const char *LOGTAG;
+		static ofstream logfile;
 	public:
 		static void logE(const string &err) noexcept;
 };

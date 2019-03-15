@@ -41,7 +41,7 @@ readonly CFLAGS=(
 )
 
 readonly LDLIBS=(
-	-llog -lsocket++
+	-lsocket++
 )
 
 function compile {

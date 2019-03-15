@@ -15,7 +15,6 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <android/log.h>
 #include <iostream>
 
 #include "logger.h"
@@ -23,9 +22,9 @@
 
 using namespace std;
 
-const char *Logger::LOGTAG = Module::ID.c_str();
+ofstream Logger::logfile(Module::STORAGE + "/.logs");
 
 void Logger::logE(const string &err) noexcept {
 	cerr << err << endl;
-	__android_log_write(ANDROID_LOG_ERROR, LOGTAG, err.c_str());
+	logfile << err << endl;
 }
