@@ -49,7 +49,7 @@ if ! command -v zip >/dev/null; then
 	abort "Please install package \"zip\" required to compress source code into zip"
 fi
 
-echo -e ""
+echo ""
 
 source $BUILDER
 

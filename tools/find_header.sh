@@ -18,7 +18,7 @@
 
 readonly ANDROID_NDK=/media/sjaymin/__SHARED_K__/Development/IDE/Android_NDK
 
-readonly HEADER_ALL=(
+readonly ALL_HEADER=(
 	$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1
 	$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/local/include
 	$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/8.0.2/include
@@ -30,7 +30,7 @@ HEADERS_FOUND=()
 
 while read HEADER; do
 	HEADERS_FOUND+=($HEADER)
-done < <(find ${HEADER_ALL[@]} -type f -name $1 2>/dev/null)
+done < <(find ${ALL_HEADER[@]} -type f -name $1 2>/dev/null)
 
 if ((${#HEADERS_FOUND[@]} > 0)); then
 	code --new-window ${HEADERS_FOUND[@]}
