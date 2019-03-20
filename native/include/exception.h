@@ -25,7 +25,7 @@ using namespace std;
 
 class Exception : public exception {
 	private:
-		const char *_what;
+		string _what;
 	public:
 		[[noreturn]] static void _throw(const string &file, int line, const string &err);
 

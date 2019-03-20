@@ -30,9 +30,9 @@
 }
 
 Exception::Exception(const string &what) noexcept {
-	_what = what.c_str();
+	_what = what;
 }
 
 const char * Exception::what() const noexcept {
-	return _what;
+	return _what.c_str();
 }
