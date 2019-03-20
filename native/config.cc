@@ -21,7 +21,7 @@
 #include "sanity.h"
 #include "shared.h"
 
-const string Config::SAVE_FILE = Module::STORAGE + "/acs.conf";
+const string Config::SAVE_FILE = Module::STORAGE + "/acs.conf"; //FIXME: Am I initialized correctly ?
 
 const string Config::AUTOMATION_KEY = "automation";
 const string Config::THR_DISABLE_KEY = "thr_disable";

@@ -29,9 +29,9 @@ using namespace std;
 using namespace chrono;
 using namespace this_thread;
 
-const array<string, 2> Battery::BATTERY_SUBSYSTEMS = { { "battery", "Battery" } };
-const array<string, 2> Battery::AC_SUBSYSTEMS = { { "ac", "AC" } };
-const array<string, 2> Battery::USB_SUBSYSTEMS = { { "usb", "USB" } };
+const array<string, 2> Battery::BATTERY_SUBSYSTEMS = { "battery", "Battery" };
+const array<string, 2> Battery::AC_SUBSYSTEMS = { "ac", "AC" };
+const array<string, 2> Battery::USB_SUBSYSTEMS = { "usb", "USB" };
 
 const string Battery::CAPACITY_EVENT = "POWER_SUPPLY_CAPACITY";
 const string Battery::ONLINE_EVENT = "POWER_SUPPLY_ONLINE";

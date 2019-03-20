@@ -21,7 +21,7 @@
 #include "ipc.h"
 #include "module.h"
 
-const string IPC::SOCKET_PATH = Module::STORAGE + "/.socket";
+const string IPC::SOCKET_PATH = Module::STORAGE + "/.socket"; //FIXME: Am I initialized correctly ?
 
 socket_server IPC::server;
 socket_client *IPC::client;

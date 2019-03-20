@@ -30,9 +30,9 @@ readonly ELEMENT_BODY=\
 	},"
 
 readonly SOURCE_BODY=\
-"vector<Database::Switch> Database::switch_ = { {
+"vector<Database::Switch> Database::switch_ = {
 %s
-} };"
+};"
 
 function parsenode {
 	set $1
