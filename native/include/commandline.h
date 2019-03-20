@@ -26,13 +26,13 @@ using namespace std;
 
 class Commandline {
 	public:
-		typedef struct {
+		struct Option {
 			string option;
 			int argsMin;
 			int argsMax;
 			bool checkSetup;
 			function<void (const vector<string> &args)> handler;
-		} Option;
+		};
 
 	private:
 		static const array<Option, 7> options;

@@ -25,12 +25,12 @@ using namespace std;
 
 class Method {
 	public:
-		typedef struct {
+		struct MethodInfo {
 			int mode;
 			function<bool ()> startMethod;
 			int thrType;
 			int thrValue;
-		} MethodInfo;
+		};
 
 	private:
 		static const int MODE_ENABLED;

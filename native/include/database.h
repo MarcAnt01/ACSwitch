@@ -24,12 +24,12 @@ using namespace std;
 
 class Database {
 	public:
-		typedef struct {
+		struct Switch {
 			string uevent;
 			string trigger;
 			string posVal;
 			string negVal;
-		} Switch;
+		};
 
 	private:
 		static vector<Switch> switch_;
