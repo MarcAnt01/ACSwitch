@@ -4,9 +4,9 @@
 # PWD=/sys/class/power_supply
 # Last updated: Sat, Mar 2, 2019
 
-# I have kept just those switches with which I could deal using standard C++ API
-# and have replaced many by their absolute equivalents. The original database is
-# available at:
+# I have kept just those switches which I could deal with using standard C++ API
+# and have replaced many by their absolute equivalents. The original base was at
+# the following link at time of writing:
 # https://github.com/Magisk-Modules-Repo/acc/blob/master/common/switches.txt.
 
 /proc/smb1357_disable_chrg 0 1
