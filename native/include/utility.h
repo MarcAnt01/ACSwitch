@@ -22,10 +22,8 @@
 
 using namespace std;
 
-class Utility {
-	private:
-		static bool xfork();
-	public:
-		static void execDaemon(const vector<string> &args);
-		static void printInfo(const vector<string> &args);
-};
+namespace Utility {
+	bool xfork();
+	void execDaemon(const vector<string> &args);
+	void printInfo(const vector<string> &args);
+}

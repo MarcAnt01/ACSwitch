@@ -29,16 +29,16 @@ using namespace std;
 using namespace chrono;
 using namespace this_thread;
 
-const int Method::MODE_ENABLED = 1;
-const int Method::MODE_DISABLED = 2;
+static const int MODE_ENABLED = 1;
+static const int MODE_DISABLED = 2;
 
-const int Method::THR_TYPE_LEVELED = 1;
-const int Method::THR_TYPE_TIMED = 2;
-const int Method::THR_TYPE_NONE = 3;
+static const int THR_TYPE_LEVELED = 1;
+static const int THR_TYPE_TIMED = 2;
+static const int THR_TYPE_NONE = 3;
 
-Method::MethodInfo Method::info;
+static Method::MethodInfo info;
 
-bool Method::parseAndPopulate(const string &fmtStr) {
+static bool parseAndPopulate(const string &fmtStr) {
 	switch (fmtStr[0]) {
 		case 'e':
 			info.mode = MODE_ENABLED;

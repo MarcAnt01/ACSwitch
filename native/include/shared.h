@@ -21,14 +21,10 @@
 
 using namespace std;
 
-class Shared {
-	private:
-		static const int UID_ROOT;
-
-	public:
-		static bool acquireRoot() noexcept;
-		static bool isProcessAlive(const string &pid);
-		static bool fileExists(const string &path) noexcept;
-		static string getProperty(const string &key, const string &file);
-		static void setProperty(const string &key, const string &val, const string &file);
-};
+namespace Shared {
+	bool acquireRoot() noexcept;
+	bool isProcessAlive(const string &pid);
+	bool fileExists(const string &path) noexcept;
+	string getProperty(const string &key, const string &file);
+	void setProperty(const string &key, const string &val, const string &file);
+}

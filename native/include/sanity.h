@@ -21,13 +21,7 @@
 
 using namespace std;
 
-class Sanity {
-	private:
-		static const int LEVEL_MIN;
-		static const int LEVEL_MAX;
-
-	public:
-		static const int SLEEP_DELAY;
-
-		static int toLevel(const string &lvlStr);
-};
+namespace Sanity {
+	const int SLEEP_DELAY = 60;
+	int toLevel(const string &lvlStr);
+}

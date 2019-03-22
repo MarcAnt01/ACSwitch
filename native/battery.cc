@@ -15,6 +15,7 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <array>
 #include <chrono>
 #include <fstream>
 #include <libgen.h>
@@ -29,18 +30,18 @@ using namespace std;
 using namespace chrono;
 using namespace this_thread;
 
-const array<string, 2> Battery::BATTERY_SUBSYSTEMS = { "battery", "Battery" };
-const array<string, 2> Battery::AC_SUBSYSTEMS = { "ac", "AC" };
-const array<string, 2> Battery::USB_SUBSYSTEMS = { "usb", "USB" };
+static const array<string, 2> BATTERY_SUBSYSTEMS = { "battery", "Battery" };
+static const array<string, 2> AC_SUBSYSTEMS = { "ac", "AC" };
+static const array<string, 2> USB_SUBSYSTEMS = { "usb", "USB" };
 
-const string Battery::CAPACITY_EVENT = "POWER_SUPPLY_CAPACITY";
-const string Battery::ONLINE_EVENT = "POWER_SUPPLY_ONLINE";
-const string Battery::STATUS_EVENT = "POWER_SUPPLY_STATUS";
+static const string CAPACITY_EVENT = "POWER_SUPPLY_CAPACITY";
+static const string ONLINE_EVENT = "POWER_SUPPLY_ONLINE";
+static const string STATUS_EVENT = "POWER_SUPPLY_STATUS";
 
-const string Battery::ONLINE_CONNECTED = "1";
-const string Battery::STATUS_CHARGING = "Charging";
+static const string ONLINE_CONNECTED = "1";
+static const string STATUS_CHARGING = "Charging";
 
-string Battery::getEvent(const array<string, 2> &subsystems, const string &event) {
+static string getEvent(const array<string, 2> &subsystems, const string &event) {
 	string uevent = Config::getUevent();
 
 	for (const string &subsystem : subsystems) {
@@ -53,11 +54,11 @@ string Battery::getEvent(const array<string, 2> &subsystems, const string &event
 	throw("Setup is incorrect, please configure again");
 }
 
-string Battery::getEvent(const string &event) {
+static string getEvent(const string &event) {
 	return getEvent(BATTERY_SUBSYSTEMS, event);
 }
 
-void Battery::writeTrigger(const string &val) {
+static void writeTrigger(const string &val) {
 	const string trig = Config::getTrigger();
 	ofstream trigger(trig, ios::out | ios::trunc);
 

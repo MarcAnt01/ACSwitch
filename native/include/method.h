@@ -23,27 +23,12 @@
 
 using namespace std;
 
-class Method {
-	public:
-		struct MethodInfo {
-			int mode;
-			function<bool ()> startMethod;
-			int thrType;
-			int thrValue;
-		};
-
-	private:
-		static const int MODE_ENABLED;
-		static const int MODE_DISABLED;
-
-		static const int THR_TYPE_LEVELED;
-		static const int THR_TYPE_TIMED;
-		static const int THR_TYPE_NONE;
-
-		static MethodInfo info;
-
-		static bool parseAndPopulate(const string &fmtStr);
-
-	public:
-		static void parseAndRun(const vector<string> &args);
-};
+namespace Method {
+	struct MethodInfo {
+		int mode;
+		function<bool ()> startMethod;
+		int thrType;
+		int thrValue;
+	};
+	void parseAndRun(const vector<string> &args);
+}

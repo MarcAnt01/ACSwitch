@@ -17,23 +17,8 @@
 
 #pragma once
 
-#include <string>
-
-#include "socket.h"
-
-using namespace std;
-
-class IPC {
-	private:
-		static const string SOCKET_PATH;
-
-		static socket_server server;
-		static socket_client *client;
-
-		static void initServer();
-
-	public:
-		static int receiveClient();
-		static void answerClient(int ret);
-		static int requestDaemon(int req);
-};
+namespace IPC {
+	int receiveClient();
+	void answerClient(int ret);
+	int requestDaemon(int req);
+}

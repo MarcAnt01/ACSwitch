@@ -36,7 +36,7 @@ readonly SOURCE=(
 )
 
 readonly HEADER=(
-	-I$NATIVE/include
+	-I$INCLUDE
 )
 
 readonly CFLAGS=(

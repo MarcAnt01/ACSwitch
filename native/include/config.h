@@ -22,42 +22,21 @@
 
 using namespace std;
 
-class Config {
-	private:
-		static const string SAVE_FILE;
+namespace Config {
+	bool isAutomated();
+	int getThrDisable();
+	int getThrEnable();
 
-		static const string AUTOMATION_KEY;
-		static const string THR_DISABLE_KEY;
-		static const string THR_ENABLE_KEY;
+	string getUevent();
+	string getTrigger();
+	string getPosVal();
+	string getNegVal();
 
-		static const string UEVENT_KEY;
-		static const string TRIGGER_KEY;
-		static const string POS_VAL_KEY;
-		static const string NEG_VAL_KEY;
+	void setUevent(const string &val);
+	void setTrigger(const string &val);
+	void setPosVal(const string &val);
+	void setNegVal(const string &val);
 
-		static const string AUTOMATION_ENABLED;
-		static const string AUTOMATION_DISABLED;
-		static const string THR_DISABLE_DEF;
-		static const string THR_ENABLE_DEF;
-
-		static string getConfig(const string &key);
-		static void setConfig(const string &key, const string &val);
-
-	public:
-		static bool isAutomated();
-		static int getThrDisable();
-		static int getThrEnable();
-
-		static string getUevent();
-		static string getTrigger();
-		static string getPosVal();
-		static string getNegVal();
-
-		static void setUevent(const string &val);
-		static void setTrigger(const string &val);
-		static void setPosVal(const string &val);
-		static void setNegVal(const string &val);
-
-		static void toggleAutomation(const vector<string> &args);
-		static void updateThresholds(const vector<string> &args);
-};
+	void toggleAutomation(const vector<string> &args);
+	void updateThresholds(const vector<string> &args);
+}

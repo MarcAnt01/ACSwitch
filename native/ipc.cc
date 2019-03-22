@@ -20,13 +20,14 @@
 #include "exception.h"
 #include "ipc.h"
 #include "module.h"
+#include "socket.h"
 
-const string IPC::SOCKET_PATH = Module::STORAGE + "/.socket"; //FIXME: Am I initialized correctly ?
+static const string SOCKET_PATH = Module::STORAGE + "/.socket";
 
-socket_server IPC::server;
-socket_client *IPC::client;
+static socket_server server;
+static socket_client *client;
 
-void IPC::initServer() {
+static void initServer() {
 	try {
 		server.setup(SOCKET_PATH, O_NONBLOCK);
 

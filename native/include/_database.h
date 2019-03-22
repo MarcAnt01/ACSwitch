@@ -17,13 +17,3 @@
 
 #pragma once
 
-#include <string>
-#include <vector>
-
-using namespace std;
-
-namespace Setup {
-	bool configGood();
-	void checkOrDie();
-	void configureSwitch(const vector<string> &args);
-}

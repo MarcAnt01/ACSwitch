@@ -33,31 +33,31 @@ using namespace std;
 using namespace chrono;
 using namespace this_thread;
 
-const int Daemon::REQUEST_CHECK = 1;
-const int Daemon::REQUEST_KILL = 2;
+static const int REQUEST_CHECK = 1;
+static const int REQUEST_KILL = 2;
 
-const int Daemon::REQUEST_AUTOMATE = 3;
-const int Daemon::REQUEST_ENABLE = 4;
-const int Daemon::REQUEST_DISABLE = 5;
+static const int REQUEST_AUTOMATE = 3;
+static const int REQUEST_ENABLE = 4;
+static const int REQUEST_DISABLE = 5;
 
-const int Daemon::RET_VAL_POSITIVE = 1;
-const int Daemon::RET_VAL_NEGATIVE = 2;
+static const int RET_VAL_POSITIVE = 1;
+static const int RET_VAL_NEGATIVE = 2;
 
-bool Daemon::IAmKilled = false;
-int Daemon::switchMode = REQUEST_AUTOMATE;
-mutex Daemon::switchLock;
+static bool IAmKilled = false;
+static int switchMode = REQUEST_AUTOMATE;
+static mutex switchLock;
 
-int Daemon::getSwitchMode() {
+static int getSwitchMode() {
 	lock_guard<mutex> lock(switchLock);
 	return switchMode;
 }
 
-void Daemon::setSwitchMode(int val) {
+static void setSwitchMode(int val) {
 	lock_guard<mutex> lock(switchLock);
 	switchMode = val;
 }
 
-void Daemon::handleRequest(int req) {
+static void handleRequest(int req) {
 	switch (req) {
 		case REQUEST_KILL:
 			if (getSwitchMode() != REQUEST_AUTOMATE) {
@@ -90,7 +90,7 @@ void Daemon::handleRequest(int req) {
 	}
 }
 
-void Daemon::handleSwitch(int mode) {
+static void handleSwitch(int mode) {
 	switch (mode) {
 		case REQUEST_ENABLE:
 			Battery::startChargingSafely();
@@ -115,7 +115,7 @@ void Daemon::handleSwitch(int mode) {
 	}
 }
 
-void Daemon::clientHandler() noexcept {
+static void clientHandler() noexcept {
 	signal(SIGPIPE, SIG_IGN);
 
 	while (!IAmKilled) {
@@ -129,7 +129,7 @@ void Daemon::clientHandler() noexcept {
 	}
 }
 
-void Daemon::switchHandler() noexcept {
+static void switchHandler() noexcept {
 	try {
 		while (!IAmKilled) {
 			if (!Setup::configGood()) {

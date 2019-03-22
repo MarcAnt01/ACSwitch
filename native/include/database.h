@@ -22,18 +22,12 @@
 
 using namespace std;
 
-class Database {
-	public:
-		struct Switch {
-			string uevent;
-			string trigger;
-			string posVal;
-			string negVal;
-		};
-
-	private:
-		static vector<Switch> switch_;
-
-	public:
-		static vector<Switch> & getSwitches();
-};
+namespace Database {
+	struct Switch {
+		string uevent;
+		string trigger;
+		string posVal;
+		string negVal;
+	};
+	vector<Switch> & getSwitches();
+}

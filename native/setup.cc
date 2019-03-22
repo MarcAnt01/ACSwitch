@@ -23,9 +23,9 @@
 #include "setup.h"
 #include "shared.h"
 
-const string Setup::DUMMY_SWITCH = "dummyValue";
+static const string DUMMY_SWITCH = "dummyValue";
 
-void Setup::setSwitch(const Database::Switch &switch_) {
+static void setSwitch(const Database::Switch &switch_) {
 	Config::setUevent(switch_.uevent);
 	Config::setTrigger(switch_.trigger);
 	Config::setPosVal(switch_.posVal);

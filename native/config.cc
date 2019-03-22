@@ -21,27 +21,27 @@
 #include "sanity.h"
 #include "shared.h"
 
-const string Config::SAVE_FILE = Module::STORAGE + "/acs.conf"; //FIXME: Am I initialized correctly ?
+static const string SAVE_FILE = Module::STORAGE + "/acs.conf";
 
-const string Config::AUTOMATION_KEY = "automation";
-const string Config::THR_DISABLE_KEY = "thr_disable";
-const string Config::THR_ENABLE_KEY = "thr_enable";
+static const string AUTOMATION_KEY = "automation";
+static const string THR_DISABLE_KEY = "thr_disable";
+static const string THR_ENABLE_KEY = "thr_enable";
 
-const string Config::UEVENT_KEY = "uevent";
-const string Config::TRIGGER_KEY = "trigger";
-const string Config::POS_VAL_KEY = "pos_val";
-const string Config::NEG_VAL_KEY = "neg_val";
+static const string UEVENT_KEY = "uevent";
+static const string TRIGGER_KEY = "trigger";
+static const string POS_VAL_KEY = "pos_val";
+static const string NEG_VAL_KEY = "neg_val";
 
-const string Config::AUTOMATION_ENABLED = "true";
-const string Config::AUTOMATION_DISABLED = "false";
-const string Config::THR_DISABLE_DEF = "70";
-const string Config::THR_ENABLE_DEF = "60";
+static const string AUTOMATION_ENABLED = "true";
+static const string AUTOMATION_DISABLED = "false";
+static const string THR_DISABLE_DEF = "70";
+static const string THR_ENABLE_DEF = "60";
 
-string Config::getConfig(const string &key) {
+static string getConfig(const string &key) {
 	return Shared::getProperty(key, SAVE_FILE);
 }
 
-void Config::setConfig(const string &key, const string &val) {
+static void setConfig(const string &key, const string &val) {
 	Shared::setProperty(key, val, SAVE_FILE);
 }
 

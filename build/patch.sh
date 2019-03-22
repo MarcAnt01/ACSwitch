@@ -18,8 +18,10 @@
 
 SCRIPT_NAME=$(basename $BASH_SOURCE)
 
+readonly INCLUDE=$NATIVE/include
+
 readonly DB_RAW=$BUILDDIR/switch.db-raw
-readonly DB_SOURCE=$NATIVE/database.cc
+readonly DB_SOURCE=$INCLUDE/_database.h
 
 readonly ELEMENT_BODY=\
 "	{
@@ -30,7 +32,7 @@ readonly ELEMENT_BODY=\
 	},"
 
 readonly SOURCE_BODY=\
-"vector<Database::Switch> Database::switch_ = {
+"static vector<Database::Switch> switch_ = {
 %s
 };"
 

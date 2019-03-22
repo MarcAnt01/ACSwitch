@@ -25,7 +25,7 @@
 
 using namespace std;
 
-const int Shared::UID_ROOT = 0;
+static const int UID_ROOT = 0;
 
 bool Shared::acquireRoot() noexcept {
 	if (seteuid(UID_ROOT) == 0) {

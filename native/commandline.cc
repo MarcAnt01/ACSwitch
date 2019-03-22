@@ -15,6 +15,7 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <array>
 #include <iostream>
 
 #include "commandline.h"
@@ -28,7 +29,7 @@
 
 using namespace std;
 
-const array<Commandline::Option, 7> Commandline::options = { {
+static const array<Commandline::Option, 7> options = { {
 	{ "--toggle",		1,	1,	true,	Config::toggleAutomation },
 	{ "--update",		0,	2,	true,	Config::updateThresholds },
 	{ "--method",		1,	1,	true,	Method::parseAndRun },
@@ -38,13 +39,13 @@ const array<Commandline::Option, 7> Commandline::options = { {
 	{ "--help",			0,	0,	false,	Module::printHelp }
 } };
 
-const char **Commandline::argvMain;
+static const char **argvMain;
 
-int Commandline::optsIndex = -1;
-int Commandline::argvIndex;
-int Commandline::argcMain;
+static int optsIndex = -1;
+static int argvIndex;
+static int argcMain;
 
-bool Commandline::setOptsIndexOf(const char *arg) noexcept {
+static bool setOptsIndexOf(const char *arg) noexcept {
 	optsIndex = -1;
 	for (int i = 0; i < options.size(); i++) {
 		if (options[i].option == arg) {
@@ -56,7 +57,7 @@ bool Commandline::setOptsIndexOf(const char *arg) noexcept {
 
 #define isOption(arg) ((arg[0]) == '-' && (arg[1]) == '-')
 
-bool Commandline::populateArgs(vector<string> &args) {
+static bool populateArgs(vector<string> &args) {
 	for (int i = argvIndex + 1; i < argcMain && argvMain[i] != nullptr; i++) {
 		if (args.size() < options[optsIndex].argsMax) {
 			if (isOption(argvMain[i])) {

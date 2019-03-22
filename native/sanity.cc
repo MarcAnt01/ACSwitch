@@ -18,10 +18,8 @@
 #include "exception.h"
 #include "sanity.h"
 
-const int Sanity::LEVEL_MIN = 0;
-const int Sanity::LEVEL_MAX = 100;
-
-const int Sanity::SLEEP_DELAY = 60;
+static const int LEVEL_MIN = 0;
+static const int LEVEL_MAX = 100;
 
 int Sanity::toLevel(const string &lvlStr) {
 	int level = stoi(lvlStr);

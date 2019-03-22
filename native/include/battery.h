@@ -17,39 +17,20 @@
 
 #pragma once
 
-#include <array>
 #include <string>
 
 using namespace std;
 
-class Battery {
-	private:
-		static const array<string, 2> BATTERY_SUBSYSTEMS;
-		static const array<string, 2> AC_SUBSYSTEMS;
-		static const array<string, 2> USB_SUBSYSTEMS;
+namespace Battery {
+	string getCapacity();
+	string getStatus();
 
-		static const string CAPACITY_EVENT;
-		static const string ONLINE_EVENT;
-		static const string STATUS_EVENT;
+	int getLevel();
+	bool isPowered();
+	bool isCharging();
 
-		static const string ONLINE_CONNECTED;
-		static const string STATUS_CHARGING;
-
-	private:
-		static string getEvent(const array<string, 2> &subsystems, const string &event);
-		static string getEvent(const string &event);
-		static void writeTrigger(const string &val);
-
-	public:
-		static string getCapacity();
-		static string getStatus();
-
-		static int getLevel();
-		static bool isPowered();
-		static bool isCharging();
-
-		static void startCharging();
-		static void stopCharging();
-		static void startChargingSafely();
-		static void stopChargingSafely();
-};
+	void startCharging();
+	void stopCharging();
+	void startChargingSafely();
+	void stopChargingSafely();
+}
