@@ -29,7 +29,7 @@ static socket_client *client;
 
 static void initServer() {
 	try {
-		server.setup(SOCKET_PATH, O_NONBLOCK);
+		server.setup(SOCKET_PATH);
 
 	} catch (const socket_exception &e) {
 		switch (e.errnum) {
@@ -47,18 +47,13 @@ int IPC::receiveClient() {
 	}
 	int req = -1;
 
-	while (req == -1) {
-		try {
-			client = server.accept();
-			client->recv(&req, sizeof(req));
+	try {
+		client = server.accept();
+		client->recv(&req, sizeof(req));
 
-		} catch (const socket_exception &e) {
-			switch (e.errnum) {
-				case ECONNABORTED:
-				case EAGAIN:
-					break;
-				default: throw(e.what);
-			}
+	} catch (const socket_exception &e) {
+		if (e.errnum != ECONNABORTED) {
+			throw(e.what);
 		}
 	}
 	return req;
@@ -74,23 +69,14 @@ void IPC::answerClient(int ret) {
 int IPC::requestDaemon(int req) {
 	int ret = -1;
 
-	while (ret == -1) {
-		try {
-			socket_client client(SOCKET_PATH, O_NONBLOCK);
-			client.send(&req, sizeof(req));
-			client.recv(&ret, sizeof(ret));
+	try {
+		socket_client client(SOCKET_PATH);
+		client.send(&req, sizeof(req));
+		client.recv(&ret, sizeof(ret));
 
-		} catch (const socket_exception &e) {
-			switch (e.errnum) {
-				case EADDRINUSE:
-				case EALREADY:
-				case EINPROGRESS:
-				case ETIMEDOUT:
-				case EISCONN:
-				case ECONNREFUSED:
-					break;
-				default: throw(e.what);
-			}
+	} catch (const socket_exception &e) {
+		if (e.errnum != ECONNREFUSED) {
+			throw(e.what);
 		}
 	}
 	return ret;
