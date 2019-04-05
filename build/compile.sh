@@ -31,14 +31,6 @@ readonly X86_TRIPLE=i686-linux-android$API_LEVEL
 readonly ARM_COMPILER=$NDK_BINDIR/$ARM_TRIPLE-clang++
 readonly X86_COMPILER=$NDK_BINDIR/$X86_TRIPLE-clang++
 
-readonly SOURCE=(
-	$NATIVE/*.cc
-)
-
-readonly HEADER=(
-	-I$INCLUDE
-)
-
 readonly CFLAGS=(
 	-O2 -fno-rtti -fomit-frame-pointer -flto
 )
@@ -48,12 +40,16 @@ readonly LDLIBS=(
 )
 
 function compile {
-	eval $2 ${SOURCE[@]} ${HEADER[@]} ${CFLAGS[@]} ${LDLIBS[@]} -s -o $OUTBIN
+	eval $2 *.cc -I$INCLUDE ${CFLAGS[@]} ${LDLIBS[@]} -s -o $OUTBIN
 
 	if (($? != 0)); then
 		abort "Compile command failed"
 	fi
 }
+
+if ! cd $NATIVE; then
+	abort "Could not change current working directory to $NATIVE"
+fi
 
 print "Compiling acs binary for arm"
 compile arm $ARM_COMPILER
