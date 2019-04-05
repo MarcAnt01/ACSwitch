@@ -18,10 +18,8 @@
 
 SCRIPT_NAME=$(basename $BASH_SOURCE)
 
-readonly INCLUDE=$NATIVE/include
-
 readonly DB_RAW=$BUILDDIR/switch.db-raw
-readonly DB_SOURCE=$INCLUDE/_database.h
+readonly DB_SOURCE=$NATIVE/database.cc
 
 readonly ELEMENT_BODY=\
 "	{
@@ -32,9 +30,20 @@ readonly ELEMENT_BODY=\
 	},"
 
 readonly SOURCE_BODY=\
-"static vector<Database::Switch> switch_ = {
+"#include \"shared.h\"
+
+static vector<Database::Switch> switch_ = {
 %s
-};"
+};
+
+vector<Database::Switch> & Database::getSwitches() {
+	for (int i = 0; i < switch_.size(); i++) {
+		if (!Shared::fileExists(switch_[i].uevent) || !Shared::fileExists(switch_[i].trigger)) {
+			switch_.erase(switch_.begin() + i--);
+		}
+	}
+	return switch_;
+}"
 
 function parsenode {
 	set $1

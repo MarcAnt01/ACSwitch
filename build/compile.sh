@@ -40,7 +40,7 @@ readonly LDLIBS=(
 )
 
 function compile {
-	eval $2 *.cc -I$INCLUDE ${CFLAGS[@]} ${LDLIBS[@]} -s -o $OUTBIN
+	eval $2 *.cc -Iinclude ${CFLAGS[@]} ${LDLIBS[@]} -s -o $OUTBIN
 
 	if (($? != 0)); then
 		abort "Compile command failed"

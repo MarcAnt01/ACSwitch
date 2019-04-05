@@ -16,15 +16,3 @@
  */
 
 #include "database.h"
-#include "shared.h"
-
-#include "_database.h"
-
-vector<Database::Switch> & Database::getSwitches() {
-	for (int i = 0; i < switch_.size(); i++) {
-		if (!Shared::fileExists(switch_[i].uevent) || !Shared::fileExists(switch_[i].trigger)) {
-			switch_.erase(switch_.begin() + i--);
-		}
-	}
-	return switch_;
-}
