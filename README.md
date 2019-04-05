@@ -9,9 +9,9 @@
 
 ## Building
 
-Building is supported on Linux only and has been tested on Ubuntu 18.10 Desktop,
-Mac environments may need some changes to the scripts and Windows users may need
-WSL along with some changes to paths. To build ACSwitch,
+Building is only supported on Linux and has been tested on Ubuntu 18.10 Desktop,
+Mac environments may need some changes to the scripts and Windows users WSL with
+some changes to paths. To build ACSwitch,
 
 1. Export NDK path to `ANDROID_NDK_HOME` environment variable.
 2. Run `build.sh` script in root of ACSwitch project folder.
@@ -23,4 +23,5 @@ if any, will be logged into `out/build.log` file.
 ## Legal
 
 Copyright (c) 2019 Jaymin Suthar. All rights reserved.
+
 See file NOTICE in project root for licensing information and more details.
