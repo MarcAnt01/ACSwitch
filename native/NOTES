@@ -1,2 +1,1 @@
-- Every error should be reported by throwing exceptions.
-- Only IPC::, Daemon:: and Commandline:: may catch them.
+None!
