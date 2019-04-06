@@ -1,6 +1,5 @@
 #pragma once
 
-#include <memory>
 #include <string>
 #include <sys/socket.h>
 
@@ -94,5 +93,6 @@ namespace libsocket
 	};
 } // END NAMESPACE LIBSOCKET
 
+using socket_error = libsocket::socket_exception;
 using socket_client = libsocket::unix_stream_client;
 using socket_server = libsocket::unix_stream_server;
