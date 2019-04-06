@@ -64,7 +64,11 @@ namespace Module
 		"        Launch or kill the ACSwitch daemon. Note that Automation\n"
 		"        and charging methods, both depend on the daemon.\n"
 		"\n"
-		"    [--info]    Print battery information and ACSwitch settings.\n";
+		"    [--info]    Print battery information and ACSwitch settings.\n"
+		"\n"
+		"Note that no progress messages are printed to terminal. If you need to check for\n"
+		"success, you can do so by checking return value of the process which must be '0'\n"
+		"on success.\n";
 
 	[[noreturn]] void printHelp(const std::vector<std::string>& args) noexcept;
 }
