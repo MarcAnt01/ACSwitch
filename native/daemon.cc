@@ -15,10 +15,6 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <chrono>
-#include <iostream>
-#include <thread>
-
 #include "battery.h"
 #include "config.h"
 #include "daemon.h"
@@ -28,6 +24,13 @@
 #include "sanity.h"
 #include "setup.h"
 #include "utility.h"
+
+#include <chrono>
+#include <iostream>
+#include <mutex>
+#include <string>
+#include <thread>
+#include <vector>
 
 using namespace std;
 using namespace chrono;
@@ -122,7 +125,7 @@ static void clientHandler() noexcept {
 		try {
 			handleRequest(IPC::receiveClient());
 
-		} catch (const exception &e) {
+		} catch (const exception& e) {
 			cerr << e.what() << endl;
 			IAmKilled = true;
 		}
@@ -138,7 +141,7 @@ static void switchHandler() noexcept {
 			handleSwitch(getSwitchMode());
 			sleep_for(seconds(Sanity::SLEEP_DELAY));
 		}
-	} catch (const exception &e) {
+	} catch (const exception& e) {
 		cerr << e.what() << endl;
 		IAmKilled = true;
 	}
@@ -160,7 +163,7 @@ bool Daemon::requestDisabling() {
 	return IPC::requestDaemon(REQUEST_DISABLE) == RET_VAL_POSITIVE;
 }
 
-void Daemon::handleArgs(const vector<string> &args) {
+void Daemon::handleArgs(const vector<string>& args) {
 	if (args[0] == "launch") {
 		Utility::execDaemon({ Module::SELF_NAME_DAEMON });
 
@@ -181,14 +184,14 @@ void Daemon::handleArgs(const vector<string> &args) {
 		clientHandlerThread = thread(clientHandler);
 		switchHandlerThread = thread(switchHandler);
 
-	} catch (const exception &e) {
+	} catch (const exception& e) {
 		cerr << e.what() << endl;
 		IAmKilled = true;
 	}
 	try {
 		clientHandlerThread.join();
 		switchHandlerThread.join();
-	} catch (const exception &e) {}
+	} catch (const exception& e) {}
 
 	exit(EXIT_FAILURE);
 }

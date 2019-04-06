@@ -15,23 +15,26 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <cerrno>
-
 #include "exception.h"
 #include "ipc.h"
 #include "module.h"
 #include "socket.h"
 
+#include <cerrno>
+#include <string>
+
+using namespace std;
+
 static const string SOCKET_PATH = Module::STORAGE + "/.socket";
 
 static socket_server server;
-static socket_client *client;
+static socket_client* client;
 
 static void initServer() {
 	try {
 		server.setup(SOCKET_PATH);
 
-	} catch (const socket_exception &e) {
+	} catch (const socket_error& e) {
 		switch (e.errnum) {
 			case EADDRINUSE:
 			case EINVAL:
@@ -51,7 +54,7 @@ int IPC::receiveClient() {
 		client = server.accept();
 		client->recv(&req, sizeof(req));
 
-	} catch (const socket_exception &e) {
+	} catch (const socket_error& e) {
 		if (e.errnum != ECONNABORTED) {
 			throw(e.what);
 		}
@@ -62,7 +65,7 @@ int IPC::receiveClient() {
 void IPC::answerClient(int ret) {
 	try {
 		client->send(&ret, sizeof(ret));
-	} catch (const socket_exception &e) {}
+	} catch (const socket_error& e) {}
 	delete client;
 }
 
@@ -74,7 +77,7 @@ int IPC::requestDaemon(int req) {
 		client.send(&req, sizeof(req));
 		client.recv(&ret, sizeof(ret));
 
-	} catch (const socket_exception &e) {
+	} catch (const socket_error& e) {
 		if (e.errnum != ECONNREFUSED) {
 			throw(e.what);
 		}

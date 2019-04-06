@@ -15,23 +15,26 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <cerrno>
-#include <cstring>
-
 #include "exception.h"
 
-[[noreturn]] void Exception::_throw(const string &file, int line, const string &err) {
-	string error = (string) file.c_str() + ":" + to_string(line) + ": " + err;
-	if (errno > 0) {
-		error += " (" + (string) strerror(errno) + ")";
+#include <cerrno>
+#include <cstring>
+#include <string>
+
+using namespace std;
+
+[[noreturn]] void Exception::_throw(const string& file, int line, const string& err) {
+	string error = file.c_str() + ":"s + to_string(line) + ": " + err;
+	if (errno != 0) {
+		error += " ("s + strerror(errno) + ")"s;
 	}
 	throw Exception(error);
 }
 
-Exception::Exception(const string &what) noexcept {
+Exception::Exception(const string& what) noexcept {
 	_what = what;
 }
 
-const char * Exception::what() const noexcept {
+const char* Exception::what() const noexcept {
 	return _what.c_str();
 }

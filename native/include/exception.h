@@ -19,17 +19,16 @@
 
 #include <string>
 
-using namespace std;
-
 #define throw(err) Exception::_throw(__FILE__, __LINE__, (err))
 
-class Exception : public exception {
-	private:
-		string _what;
+class Exception : public std::exception {
 	public:
-		[[noreturn]] static void _throw(const string &file, int line, const string &err);
+		[[noreturn]] static void _throw(const std::string& file, int line, const std::string& err);
 
-		Exception(const string &what) noexcept;
+		Exception(const std::string& what) noexcept;
 		~Exception() noexcept {}
-		const char * what() const noexcept;
+		const char* what() const noexcept;
+
+	private:
+		std::string _what;
 };

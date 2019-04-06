@@ -23,9 +23,14 @@
 #include "setup.h"
 #include "shared.h"
 
+#include <string>
+#include <vector>
+
+using namespace std;
+
 static const string DUMMY_SWITCH = "dummyValue";
 
-static void setSwitch(const Database::Switch &switch_) {
+static void setSwitch(const Database::Switch& switch_) {
 	Config::setUevent(switch_.uevent);
 	Config::setTrigger(switch_.trigger);
 	Config::setPosVal(switch_.posVal);
@@ -45,8 +50,8 @@ void Setup::checkOrDie() {
 	}
 }
 
-void Setup::configureSwitch(const vector<string> &args) {
-	for (const Database::Switch &switch_ : Database::getSwitches()) {
+void Setup::configureSwitch(const vector<string>& args) {
+	for (const Database::Switch& switch_ : Database::getSwitches()) {
 		setSwitch(switch_);
 
 		if (Battery::isPowered() && Battery::isCharging()) {

@@ -15,16 +15,17 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <array>
-#include <chrono>
-#include <fstream>
-#include <libgen.h>
-#include <thread>
-
 #include "battery.h"
 #include "config.h"
 #include "exception.h"
 #include "shared.h"
+
+#include <array>
+#include <chrono>
+#include <fstream>
+#include <libgen.h>
+#include <string>
+#include <thread>
 
 using namespace std;
 using namespace chrono;
@@ -41,10 +42,10 @@ static const string STATUS_EVENT = "POWER_SUPPLY_STATUS";
 static const string ONLINE_CONNECTED = "1";
 static const string STATUS_CHARGING = "Charging";
 
-static string getEvent(const array<string, 2> &subsystems, const string &event) {
+static string getEvent(const array<string, 2>& subsystems, const string& event) {
 	string uevent = Config::getUevent();
 
-	for (const string &subsystem : subsystems) {
+	for (const string& subsystem : subsystems) {
 		uevent = dirname(dirname(uevent.c_str())) + subsystem + "/uevent";
 
 		if (Shared::fileExists(uevent)) {
@@ -54,11 +55,11 @@ static string getEvent(const array<string, 2> &subsystems, const string &event) 
 	throw("Setup is incorrect, please configure again");
 }
 
-static string getEvent(const string &event) {
+static string getEvent(const string& event) {
 	return getEvent(BATTERY_SUBSYSTEMS, event);
 }
 
-static void writeTrigger(const string &val) {
+static void writeTrigger(const string& val) {
 	const string trig = Config::getTrigger();
 	ofstream trigger(trig, ios::out | ios::trunc);
 

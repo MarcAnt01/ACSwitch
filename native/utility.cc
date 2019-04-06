@@ -15,16 +15,16 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <cstring>
-#include <iostream>
-#include <sys/wait.h>
-#include <unistd.h>
-
 #include "battery.h"
 #include "config.h"
 #include "exception.h"
 #include "module.h"
 #include "utility.h"
+
+#include <iostream>
+#include <string>
+#include <unistd.h>
+#include <vector>
 
 using namespace std;
 
@@ -37,27 +37,27 @@ bool Utility::xfork() {
 	}
 }
 
-void Utility::execDaemon(const vector<string> &args) {
+void Utility::execDaemon(const vector<string>& args) {
 	if (!xfork()) {
 		setsid();
 
 		if (xfork()) {
 			exit(EXIT_SUCCESS);
 		} else {
-			const char *argv[args.size() + 1];
+			const char* argv[args.size() + 1];
 			argv[args.size()] = nullptr;
 
 			for (int i = 0; i < args.size(); i++) {
 				argv[i] = args[i].c_str();
 			}
-			if (execvp(Module::SELF_NAME_CLIENT.c_str(), (char *const *) argv)) {
+			if (execvp(Module::SELF_NAME_CLIENT.c_str(), (char* const*) argv)) {
 				throw("Could not exec process");
 			}
 		}
 	}
 }
 
-void Utility::printInfo(const vector<string> &args) {
+void Utility::printInfo(const vector<string>& args) {
 	cout << "Battery Information\n"
 		<< "\n"
 		<< "Level: " << Battery::getCapacity() << "\n"

@@ -19,12 +19,11 @@
 
 #include <string>
 
-using namespace std;
-
-namespace Shared {
+namespace Shared
+{
 	bool acquireRoot() noexcept;
-	bool isProcessAlive(const string &pid);
-	bool fileExists(const string &path) noexcept;
-	string getProperty(const string &key, const string &file);
-	void setProperty(const string &key, const string &val, const string &file);
+	bool isProcessAlive(const std::string& pid);
+	bool fileExists(const std::string& path) noexcept;
+	std::string getProperty(const std::string& key, const std::string& file);
+	void setProperty(const std::string& key, const std::string& val, const std::string& file);
 }

@@ -19,11 +19,10 @@
 
 #include <string>
 
-using namespace std;
-
-namespace Battery {
-	string getCapacity();
-	string getStatus();
+namespace Battery
+{
+	std::string getCapacity();
+	std::string getStatus();
 
 	int getLevel();
 	bool isPowered();

@@ -15,15 +15,17 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <chrono>
-#include <thread>
-#include <unistd.h>
-
 #include "battery.h"
 #include "daemon.h"
 #include "exception.h"
 #include "method.h"
 #include "sanity.h"
+
+#include <chrono>
+#include <string>
+#include <thread>
+#include <unistd.h>
+#include <vector>
 
 using namespace std;
 using namespace chrono;
@@ -38,7 +40,7 @@ static const int THR_TYPE_NONE = 3;
 
 static Method::MethodInfo info;
 
-static bool parseAndPopulate(const string &fmtStr) {
+static bool parseAndPopulate(const string& fmtStr) {
 	switch (fmtStr[0]) {
 		case 'e':
 			info.mode = MODE_ENABLED;
@@ -82,7 +84,7 @@ static bool parseAndPopulate(const string &fmtStr) {
 	return true;
 }
 
-void Method::parseAndRun(const vector<string> &args) {
+void Method::parseAndRun(const vector<string>& args) {
 	if (!parseAndPopulate(args[0])) {
 		throw("Invalid format string: " + args[0]);
 	}

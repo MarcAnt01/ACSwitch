@@ -15,13 +15,14 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <fstream>
-#include <iostream>
-#include <unistd.h>
-
 #include "exception.h"
 #include "module.h"
 #include "shared.h"
+
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <unistd.h>
 
 using namespace std;
 
@@ -36,7 +37,7 @@ bool Shared::acquireRoot() noexcept {
 	}
 }
 
-bool Shared::isProcessAlive(const string &pid) {
+bool Shared::isProcessAlive(const string& pid) {
 	int killRet = kill(stoi(pid), 0);
 	switch (errno) {
 		case ESRCH:
@@ -46,11 +47,11 @@ bool Shared::isProcessAlive(const string &pid) {
 	}
 }
 
-bool Shared::fileExists(const string &path) noexcept {
+bool Shared::fileExists(const string& path) noexcept {
 	return ifstream(path).is_open();
 }
 
-string Shared::getProperty(const string &key, const string &file) {
+string Shared::getProperty(const string& key, const string& file) {
 	ifstream propFile(file);
 
 	if (!propFile.is_open()) {
@@ -67,8 +68,8 @@ string Shared::getProperty(const string &key, const string &file) {
 	throw("Could not find property: " + key + ", in file: " + file);
 }
 
-void Shared::setProperty(const string &key, const string &val, const string &file) {
-	const string temp = Module::STORAGE + "/.tempfile";
+void Shared::setProperty(const string& key, const string& val, const string& file) {
+	static const string temp = Module::STORAGE + "/.tempfile";
 
 	{
 		ifstream propFile(file);

@@ -20,7 +20,11 @@
 #include "module.h"
 #include "shared.h"
 
-int main(int argc, const char *argv[]) noexcept {
+#include <string>
+
+using namespace std;
+
+int main(int argc, const char* argv[]) noexcept {
 	if (!Shared::acquireRoot()) {
 		return EXIT_FAILURE;
 	}

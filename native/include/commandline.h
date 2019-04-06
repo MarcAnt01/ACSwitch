@@ -21,15 +21,14 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
-namespace Commandline {
+namespace Commandline
+{
 	struct Option {
-		string option;
+		std::string option;
 		int argsMin;
 		int argsMax;
 		bool checkSetup;
-		function<void (const vector<string> &args)> handler;
+		std::function<void (const std::vector<std::string>& args)> handler;
 	};
-	bool handleArgs(int argc, const char *argv[]) noexcept;
+	bool handleArgs(int argc, const char* argv[]) noexcept;
 }

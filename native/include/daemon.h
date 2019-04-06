@@ -20,15 +20,14 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
-namespace Daemon {
+namespace Daemon
+{
 	bool isRunning();
 
 	void requestAutomating();
 	bool requestEnabling();
 	bool requestDisabling();
 
-	void handleArgs(const vector<string> &args);
+	void handleArgs(const std::vector<std::string>& args);
 	[[noreturn]] void runServer() noexcept;
 }

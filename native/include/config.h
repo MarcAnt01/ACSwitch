@@ -20,23 +20,22 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
-namespace Config {
+namespace Config
+{
 	bool isAutomated();
 	int getThrDisable();
 	int getThrEnable();
 
-	string getUevent();
-	string getTrigger();
-	string getPosVal();
-	string getNegVal();
+	std::string getUevent();
+	std::string getTrigger();
+	std::string getPosVal();
+	std::string getNegVal();
 
-	void setUevent(const string &val);
-	void setTrigger(const string &val);
-	void setPosVal(const string &val);
-	void setNegVal(const string &val);
+	void setUevent(const std::string& val);
+	void setTrigger(const std::string& val);
+	void setPosVal(const std::string& val);
+	void setNegVal(const std::string& val);
 
-	void toggleAutomation(const vector<string> &args);
-	void updateThresholds(const vector<string> &args);
+	void toggleAutomation(const std::vector<std::string>& args);
+	void updateThresholds(const std::vector<std::string>& args);
 }

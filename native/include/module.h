@@ -20,17 +20,16 @@
 #include <string>
 #include <vector>
 
-using namespace std;
+namespace Module
+{
+	const std::string ID = "ACSwitch";
+	const std::string MOUNTPATH = "/data/adb/modules";
+	const std::string STORAGE = MOUNTPATH + "/" + ID;
 
-namespace Module {
-	const string ID = "ACSwitch";
-	const string MOUNTPATH = "/data/adb/modules";
-	const string STORAGE = MOUNTPATH + "/" + ID;
+	const std::string SELF_NAME_CLIENT = "acs";
+	const std::string SELF_NAME_DAEMON = "acsd";
 
-	const string SELF_NAME_CLIENT = "acs";
-	const string SELF_NAME_DAEMON = "acsd";
-
-	const string HELP =
+	const std::string HELP =
 		"Usage: `acs [<option> [<args>...]...]`\n"
 		"\n"
 		"Options:\n"
@@ -68,10 +67,7 @@ namespace Module {
 		"        Launch or kill the ACSwitch daemon. Remember, Automation\n"
 		"        and charging methods, both depend on the daemon to work.\n"
 		"\n"
-		"    [--info]    Print battery information and ACSwitch settings.\n"
-		"\n"
-		"Note that ACSwitch does not print anything but errors, if any, on terminal, thus\n"
-		"if everything is working as expected, you will find nothing on terminal screen.\n";
+		"    [--info]    Print battery information and ACSwitch settings.\n";
 
-	[[noreturn]] void printHelp(const vector<string> &args) noexcept;
+	[[noreturn]] void printHelp(const std::vector<std::string>& args) noexcept;
 }

@@ -21,6 +21,11 @@
 #include "sanity.h"
 #include "shared.h"
 
+#include <string>
+#include <vector>
+
+using namespace std;
+
 static const string SAVE_FILE = Module::STORAGE + "/acs.conf";
 
 static const string AUTOMATION_KEY = "automation";
@@ -37,11 +42,11 @@ static const string AUTOMATION_DISABLED = "false";
 static const string THR_DISABLE_DEF = "70";
 static const string THR_ENABLE_DEF = "60";
 
-static string getConfig(const string &key) {
+static string getConfig(const string& key) {
 	return Shared::getProperty(key, SAVE_FILE);
 }
 
-static void setConfig(const string &key, const string &val) {
+static void setConfig(const string& key, const string& val) {
 	Shared::setProperty(key, val, SAVE_FILE);
 }
 
@@ -73,23 +78,23 @@ string Config::getNegVal() {
 	return getConfig(NEG_VAL_KEY);
 }
 
-void Config::setUevent(const string &val) {
+void Config::setUevent(const string& val) {
 	setConfig(UEVENT_KEY, val);
 }
 
-void Config::setTrigger(const string &val) {
+void Config::setTrigger(const string& val) {
 	setConfig(TRIGGER_KEY, val);
 }
 
-void Config::setPosVal(const string &val) {
+void Config::setPosVal(const string& val) {
 	setConfig(POS_VAL_KEY, val);
 }
 
-void Config::setNegVal(const string &val) {
+void Config::setNegVal(const string& val) {
 	setConfig(NEG_VAL_KEY, val);
 }
 
-void Config::toggleAutomation(const vector<string> &args) {
+void Config::toggleAutomation(const vector<string>& args) {
 	if (args[0] == "ON") {
 		setConfig(AUTOMATION_KEY, AUTOMATION_ENABLED);
 
@@ -101,7 +106,7 @@ void Config::toggleAutomation(const vector<string> &args) {
 	}
 }
 
-void Config::updateThresholds(const vector<string> &args) {
+void Config::updateThresholds(const vector<string>& args) {
 	if (args.size() == 0) {
 		setConfig(THR_DISABLE_KEY, THR_DISABLE_DEF);
 		setConfig(THR_ENABLE_KEY, THR_ENABLE_DEF);

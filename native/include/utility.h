@@ -20,10 +20,9 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
-namespace Utility {
+namespace Utility
+{
 	bool xfork();
-	void execDaemon(const vector<string> &args);
-	void printInfo(const vector<string> &args);
+	void execDaemon(const std::vector<std::string>& args);
+	void printInfo(const std::vector<std::string>& args);
 }

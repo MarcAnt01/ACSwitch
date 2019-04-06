@@ -15,9 +15,6 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <array>
-#include <iostream>
-
 #include "commandline.h"
 #include "config.h"
 #include "daemon.h"
@@ -26,6 +23,11 @@
 #include "module.h"
 #include "setup.h"
 #include "utility.h"
+
+#include <array>
+#include <iostream>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -39,13 +41,13 @@ static const array<Commandline::Option, 7> options = { {
 	{ "--help",			0,	0,	false,	Module::printHelp }
 } };
 
-static const char **argvMain;
+static const char** argvMain;
 
 static int optsIndex = -1;
 static int argvIndex;
 static int argcMain;
 
-static bool setOptsIndexOf(const char *arg) noexcept {
+static bool setOptsIndexOf(const char* arg) noexcept {
 	optsIndex = -1;
 	for (int i = 0; i < options.size(); i++) {
 		if (options[i].option == arg) {
@@ -57,7 +59,7 @@ static bool setOptsIndexOf(const char *arg) noexcept {
 
 #define isOption(arg) ((arg[0]) == '-' && (arg[1]) == '-')
 
-static bool populateArgs(vector<string> &args) {
+static bool populateArgs(vector<string>& args) {
 	for (int i = argvIndex + 1; i < argcMain && argvMain[i] != nullptr; i++) {
 		if (args.size() < options[optsIndex].argsMax) {
 			if (isOption(argvMain[i])) {
@@ -70,7 +72,7 @@ static bool populateArgs(vector<string> &args) {
 	return args.size() >= options[optsIndex].argsMin;
 }
 
-bool Commandline::handleArgs(int argc, const char *argv[]) noexcept {
+bool Commandline::handleArgs(int argc, const char* argv[]) noexcept {
 	argcMain = argc;
 	argvMain = argv;
 
@@ -79,7 +81,7 @@ bool Commandline::handleArgs(int argc, const char *argv[]) noexcept {
 			vector<string> args;
 
 			if (!setOptsIndexOf(argvMain[argvIndex])) {
-				throw("Unrecognized option: " + (string) argvMain[argvIndex]);
+				throw("Unrecognized option: "s + argvMain[argvIndex]);
 			}
 			if (!populateArgs(args)) {
 				throw("Option misses arguments: " + options[optsIndex].option);
@@ -89,7 +91,7 @@ bool Commandline::handleArgs(int argc, const char *argv[]) noexcept {
 			}
 			options[optsIndex].handler(args);
 
-		} catch (const exception &e) {
+		} catch (const exception& e) {
 			cerr << e.what() << endl;
 			return false;
 		}

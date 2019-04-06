@@ -30,13 +30,18 @@ readonly ELEMENT_BODY=\
 	},"
 
 readonly SOURCE_BODY=\
-"#include \"shared.h\"
+"#include \"database.h\"
+#include \"shared.h\"
+
+#include <vector>
+
+using namespace std;
 
 static vector<Database::Switch> switch_ = {
 %s
 };
 
-vector<Database::Switch> & Database::getSwitches() {
+vector<Database::Switch>& Database::getSwitches() {
 	for (int i = 0; i < switch_.size(); i++) {
 		if (!Shared::fileExists(switch_[i].uevent) || !Shared::fileExists(switch_[i].trigger)) {
 			switch_.erase(switch_.begin() + i--);

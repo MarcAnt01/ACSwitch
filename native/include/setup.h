@@ -20,10 +20,9 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
-namespace Setup {
+namespace Setup
+{
 	bool configGood();
 	void checkOrDie();
-	void configureSwitch(const vector<string> &args);
+	void configureSwitch(const std::vector<std::string>& args);
 }

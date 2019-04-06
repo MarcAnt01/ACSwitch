@@ -21,14 +21,13 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
-namespace Method {
+namespace Method
+{
 	struct MethodInfo {
 		int mode;
-		function<bool ()> startMethod;
+		std::function<bool ()> startMethod;
 		int thrType;
 		int thrValue;
 	};
-	void parseAndRun(const vector<string> &args);
+	void parseAndRun(const std::vector<std::string>& args);
 }

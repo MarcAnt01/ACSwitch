@@ -18,10 +18,14 @@
 #include "exception.h"
 #include "sanity.h"
 
+#include <string>
+
+using namespace std;
+
 static const int LEVEL_MIN = 0;
 static const int LEVEL_MAX = 100;
 
-int Sanity::toLevel(const string &lvlStr) {
+int Sanity::toLevel(const string& lvlStr) {
 	int level = stoi(lvlStr);
 
 	if (level < LEVEL_MIN || level > LEVEL_MAX) {

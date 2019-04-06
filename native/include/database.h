@@ -20,14 +20,13 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
-namespace Database {
+namespace Database
+{
 	struct Switch {
-		string uevent;
-		string trigger;
-		string posVal;
-		string negVal;
+		std::string uevent;
+		std::string trigger;
+		std::string posVal;
+		std::string negVal;
 	};
-	vector<Switch> & getSwitches();
+	std::vector<Switch>& getSwitches();
 }

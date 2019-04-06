@@ -15,13 +15,15 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <iostream>
-
 #include "module.h"
+
+#include <iostream>
+#include <string>
+#include <vector>
 
 using namespace std;
 
-[[noreturn]] void Module::printHelp(const vector<string> &args) noexcept {
+[[noreturn]] void Module::printHelp(const vector<string>& args) noexcept {
 	cerr << HELP << endl;
 	exit(EXIT_FAILURE);
 }
