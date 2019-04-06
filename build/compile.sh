@@ -32,7 +32,7 @@ readonly ARM_COMPILER=$NDK_BINDIR/$ARM_TRIPLE-clang++
 readonly X86_COMPILER=$NDK_BINDIR/$X86_TRIPLE-clang++
 
 readonly CFLAGS=(
-	-O2 -fno-rtti -fomit-frame-pointer -flto
+	-std=c++17 -O2 -fno-rtti -fomit-frame-pointer -flto
 )
 
 readonly LDLIBS=(

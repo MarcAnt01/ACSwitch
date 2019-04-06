@@ -3,7 +3,7 @@
 		{
 			"name": "Android NDK (ARM, API level 21)",
 			"compilerPath": "/media/sjaymin/__SHARED_K__/Development/IDE/Android_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi21-clang++",
-			"cppStandard": "c++14",
+			"cppStandard": "c++17",
 			"cStandard": "c11",
 			"includePath": [
 				"/media/sjaymin/__SHARED_K__/Development/IDE/Android_NDK/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1",
@@ -18,7 +18,7 @@
 		{
 			"name": "Android NDK (x86, API level 21)",
 			"compilerPath": "/media/sjaymin/__SHARED_K__/Development/IDE/Android_NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/i686-linux-android21-clang++",
-			"cppStandard": "c++14",
+			"cppStandard": "c++17",
 			"cStandard": "c11",
 			"includePath": [
 				"/media/sjaymin/__SHARED_K__/Development/IDE/Android_NDK/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1",
