@@ -25,9 +25,9 @@
 #include "setup.h"
 #include "utility.h"
 
+#include <atomic>
 #include <chrono>
 #include <iostream>
-#include <mutex>
 #include <string>
 #include <thread>
 #include <vector>
@@ -46,24 +46,13 @@ static const int REQUEST_DISABLE = 5;
 static const int RET_VAL_POSITIVE = 1;
 static const int RET_VAL_NEGATIVE = 2;
 
-static bool IAmKilled = false;
-static int switchMode = REQUEST_AUTOMATE;
-static mutex switchLock;
-
-static int getSwitchMode() {
-	lock_guard<mutex> lock(switchLock);
-	return switchMode;
-}
-
-static void setSwitchMode(int val) {
-	lock_guard<mutex> lock(switchLock);
-	switchMode = val;
-}
+static atomic_bool IAmKilled = false;
+static atomic_int switchMode = REQUEST_AUTOMATE;
 
 static void handleRequest(int req) {
 	switch (req) {
 		case REQUEST_KILL:
-			if (getSwitchMode() != REQUEST_AUTOMATE) {
+			if (switchMode != REQUEST_AUTOMATE) {
 				IPC::answerClient(RET_VAL_NEGATIVE);
 				break;
 			} else {
@@ -78,16 +67,16 @@ static void handleRequest(int req) {
 
 		case REQUEST_AUTOMATE:
 			IPC::answerClient(RET_VAL_POSITIVE);
-			setSwitchMode(REQUEST_AUTOMATE);
+			switchMode = REQUEST_AUTOMATE;
 			break;
 
 		case REQUEST_ENABLE:
 		case REQUEST_DISABLE: {
-			if (getSwitchMode() != REQUEST_AUTOMATE) {
+			if (switchMode != REQUEST_AUTOMATE) {
 				IPC::answerClient(RET_VAL_NEGATIVE);
 			} else {
 				IPC::answerClient(RET_VAL_POSITIVE);
-				setSwitchMode(req);
+				switchMode = req;
 			}
 		}
 	}
@@ -138,7 +127,7 @@ static void switchHandler() noexcept {
 			if (!Setup::configGood()) {
 				continue;
 			}
-			handleSwitch(getSwitchMode());
+			handleSwitch(switchMode);
 			sleep_for(seconds(Sanity::SLEEP_DELAY));
 		}
 	} catch (const exception& e) {
