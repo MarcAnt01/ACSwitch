@@ -1,3 +1,2 @@
-- There is no progress output implementation for now.
 - Every error should be reported by throwing exceptions.
 - Only IPC::, Daemon:: and Commandline:: may catch them.

@@ -122,22 +122,23 @@ static void clientHandler() noexcept {
 }
 
 static void switchHandler() noexcept {
-	try {
-		while (!IAmKilled) {
+	while (!IAmKilled) {
+		try {
 			if (!Setup::configGood()) {
 				continue;
 			}
 			handleSwitch(switchMode);
 			sleep_for(seconds(Sanity::SLEEP_DELAY));
+
+		} catch (const exception& e) {
+			cerr << e.what() << endl;
+			IAmKilled = true;
 		}
-	} catch (const exception& e) {
-		cerr << e.what() << endl;
-		IAmKilled = true;
 	}
 }
 
 bool Daemon::isRunning() {
-	return IPC::requestDaemon(REQUEST_CHECK) == RET_VAL_POSITIVE;
+	return IPC::requestDaemon(REQUEST_CHECK) > 0;
 }
 
 void Daemon::requestAutomating() {
