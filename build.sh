@@ -35,7 +35,7 @@ mkdir $OUTDIR 2>/dev/null
 exec 3>&2 2>$LOGFILE
 
 function abort {
-	echo >&3 -e "\n$SCRIPT_NAME: \e[01;33mERROR\e[0m: \e[01;31m$1\e[0m\n"
+	echo >&3 -e "\n$SCRIPT_NAME: \e[01;33mERROR:\e[0m \e[01;31m$1\e[0m\n"
 	if [[ -n $CLEANER ]]; then
 		source $CLEANER
 	fi
