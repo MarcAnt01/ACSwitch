@@ -1,1 +1,5 @@
-None!
+Options other than [--configure] have been proved working correctly either by my
+personal testing or by users testing ACSwitch. [--configure] may be the only one
+that needs a little attention of mine, but don't forget others though.
+
+Once above is satisfied, I may release the very first completely stable version.
