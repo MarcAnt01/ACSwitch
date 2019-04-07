@@ -178,7 +178,10 @@ void Daemon::handleArgs(const vector<string>& args) {
 		cerr << e.what() << endl;
 		IAmKilled = true;
 	}
+
+	while (!IAmKilled);
 	try {
+		IPC::requestDaemon(0);
 		clientHandlerThread.join();
 		switchHandlerThread.join();
 	} catch (const exception& e) {}
