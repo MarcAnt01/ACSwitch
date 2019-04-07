@@ -23,16 +23,11 @@
 
 using namespace std;
 
-[[noreturn]] void Exception::_throw(const string& file, int line, const string& err) {
-	string error = file.c_str() + ":"s + to_string(line) + ": " + err;
+Exception::Exception(const std::string& file, int line, const std::string& what) noexcept {
+	_what = file.c_str() + ":"s + to_string(line) + ": " + what;
 	if (errno != 0) {
-		error += " ("s + strerror(errno) + ")"s;
+		_what += " ("s + strerror(errno) + ")"s;
 	}
-	throw Exception(error);
-}
-
-Exception::Exception(const string& what) noexcept {
-	_what = what;
 }
 
 const char* Exception::what() const noexcept {

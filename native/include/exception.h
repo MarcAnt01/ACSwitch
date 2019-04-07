@@ -21,14 +21,12 @@
 
 class Exception : public std::exception {
 	public:
-		[[noreturn]] static void _throw(const std::string& file, int line, const std::string& err);
-
-		Exception(const std::string& what) noexcept;
-		~Exception() noexcept {}
+		Exception(const std::string& file, int line, const std::string& what) noexcept;
+		~Exception() noexcept = default;
 		const char* what() const noexcept;
 
 	private:
 		std::string _what;
 };
 
-#define throw(err) Exception::_throw(__FILE__, __LINE__, (err))
+#define throw(err) throw Exception(__FILE__, __LINE__, (err))
