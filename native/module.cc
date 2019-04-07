@@ -17,6 +17,7 @@
 
 #include "module.h"
 
+#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>

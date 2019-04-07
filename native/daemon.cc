@@ -27,6 +27,8 @@
 
 #include <atomic>
 #include <chrono>
+#include <csignal>
+#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <thread>
@@ -51,6 +53,10 @@ static atomic_int switchMode = REQUEST_AUTOMATE;
 
 static void handleRequest(int req) {
 	switch (req) {
+		case REQUEST_CHECK:
+			IPC::answerClient(RET_VAL_POSITIVE);
+			break;
+
 		case REQUEST_KILL:
 			if (switchMode != REQUEST_AUTOMATE) {
 				IPC::answerClient(RET_VAL_NEGATIVE);
@@ -60,10 +66,6 @@ static void handleRequest(int req) {
 				IAmKilled = true;
 				return;
 			}
-
-		case REQUEST_CHECK:
-			IPC::answerClient(RET_VAL_POSITIVE);
-			break;
 
 		case REQUEST_AUTOMATE:
 			IPC::answerClient(RET_VAL_POSITIVE);
@@ -109,6 +111,7 @@ static void handleSwitch(int mode) {
 
 static void clientHandler() noexcept {
 	signal(SIGPIPE, SIG_IGN);
+	IPC::initServer();
 
 	while (!IAmKilled) {
 		try {

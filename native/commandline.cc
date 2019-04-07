@@ -60,11 +60,12 @@ static bool setOptsIndexOf(const char* arg) noexcept {
 #define isOption(arg) ((arg[0]) == '-' && (arg[1]) == '-')
 
 static bool populateArgs(vector<string>& args) {
-	for (int i = argvIndex + 1; i < argcMain && argvMain[i] != nullptr; i++) {
+	for (int i = argvIndex + 1; i < argcMain && argvMain[i]; i++) {
+		if (isOption(argvMain[i])) {
+			break;
+		}
+
 		if (args.size() < options[optsIndex].argsMax) {
-			if (isOption(argvMain[i])) {
-				break;
-			}
 			args.push_back(argvMain[i]);
 			argvIndex++;
 		}

@@ -22,7 +22,6 @@
 
 namespace Utility
 {
-	bool xfork();
 	void execDaemon(const std::vector<std::string>& args);
 	void printInfo(const std::vector<std::string>& args);
 }

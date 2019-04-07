@@ -19,6 +19,7 @@
 
 namespace IPC
 {
+	void initServer();
 	int receiveClient();
 	void answerClient(int ret);
 	int requestDaemon(int req);

@@ -97,10 +97,9 @@ void Method::parseAndRun(const vector<string>& args) {
 		sleep_for(seconds(info.thrValue));
 
 	} else if (info.thrType == THR_TYPE_LEVELED) {
-		int level = Battery::getLevel();
 		if (
-				(level >= info.thrValue && info.mode == MODE_ENABLED)
-			|| (level <= info.thrValue && info.mode == MODE_DISABLED)
+				(Battery::getLevel() >= info.thrValue && info.mode == MODE_ENABLED)
+			|| (Battery::getLevel() <= info.thrValue && info.mode == MODE_DISABLED)
 		) {
 			throw("Unreachable target level: " + args[0].substr(2));
 		}

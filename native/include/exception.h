@@ -19,8 +19,6 @@
 
 #include <string>
 
-#define throw(err) Exception::_throw(__FILE__, __LINE__, (err))
-
 class Exception : public std::exception {
 	public:
 		[[noreturn]] static void _throw(const std::string& file, int line, const std::string& err);
@@ -32,3 +30,5 @@ class Exception : public std::exception {
 	private:
 		std::string _what;
 };
+
+#define throw(err) Exception::_throw(__FILE__, __LINE__, (err))

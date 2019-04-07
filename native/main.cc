@@ -18,14 +18,27 @@
 #include "commandline.h"
 #include "daemon.h"
 #include "module.h"
-#include "shared.h"
 
+#include <cstdlib>
+#include <iostream>
 #include <string>
+#include <unistd.h>
 
 using namespace std;
 
+static const int UID_ROOT = 0;
+
+static bool acquireRoot() noexcept {
+	if (seteuid(UID_ROOT) == 0) {
+		return true;
+	} else {
+		cerr << "Could not acquire root access" << endl;
+		return false;
+	}
+}
+
 int main(int argc, const char* argv[]) noexcept {
-	if (!Shared::acquireRoot()) {
+	if (!acquireRoot()) {
 		return EXIT_FAILURE;
 	}
 	if (argv[0] == Module::SELF_NAME_DAEMON) {

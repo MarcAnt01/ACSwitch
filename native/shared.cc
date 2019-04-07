@@ -19,33 +19,12 @@
 #include "module.h"
 #include "shared.h"
 
+#include <cstdio>
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <unistd.h>
 
 using namespace std;
-
-static const int UID_ROOT = 0;
-
-bool Shared::acquireRoot() noexcept {
-	if (seteuid(UID_ROOT) == 0) {
-		return true;
-	} else {
-		cerr << "Could not acquire root access" << endl;
-		return false;
-	}
-}
-
-bool Shared::isProcessAlive(const string& pid) {
-	int killRet = kill(stoi(pid), 0);
-	switch (errno) {
-		case ESRCH:
-		case 0:
-			throw("Could not check for PID: " + pid);
-		default: return killRet == 0;
-	}
-}
 
 bool Shared::fileExists(const string& path) noexcept {
 	return ifstream(path).is_open();
@@ -56,20 +35,18 @@ string Shared::getProperty(const string& key, const string& file) {
 
 	if (!propFile.is_open()) {
 		throw("Could not open file: " + file);
-	} else {
-		string line;
+	}
 
-		while (getline(propFile, line)) {
-			if (line.compare(0, key.size(), key) == 0 && line[key.size()] == '=') {
-				return line.substr(key.size() + 1);
-			}
+	for (string line; getline(propFile, line);) {
+		if (line.compare(0, key.size(), key) == 0 && line[key.size()] == '=') {
+			return line.substr(key.size() + 1);
 		}
 	}
 	throw("Could not find property: " + key + ", in file: " + file);
 }
 
 void Shared::setProperty(const string& key, const string& val, const string& file) {
-	static const string temp = Module::STORAGE + "/.tempfile";
+	const string temp = Module::STORAGE + "/.tempfile";
 
 	{
 		ifstream propFile(file);
@@ -82,9 +59,7 @@ void Shared::setProperty(const string& key, const string& val, const string& fil
 			throw("Could not open file: " + temp);
 		}
 
-		string line;
-
-		while (getline(propFile, line)) {
+		for (string line; getline(propFile, line);) {
 			if (line.compare(0, key.size(), key) == 0 && line[key.size()] == '=') {
 				tempFile << key << '=' << val << "\n";
 			} else {

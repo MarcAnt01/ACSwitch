@@ -21,8 +21,6 @@
 
 namespace Shared
 {
-	bool acquireRoot() noexcept;
-	bool isProcessAlive(const std::string& pid);
 	bool fileExists(const std::string& path) noexcept;
 	std::string getProperty(const std::string& key, const std::string& file);
 	void setProperty(const std::string& key, const std::string& val, const std::string& file);

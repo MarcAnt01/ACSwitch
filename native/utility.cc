@@ -21,6 +21,7 @@
 #include "module.h"
 #include "utility.h"
 
+#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <unistd.h>
@@ -28,7 +29,7 @@
 
 using namespace std;
 
-bool Utility::xfork() {
+static bool xfork() {
 	pid_t child = fork();
 	switch (child) {
 		case -1: throw("Could not fork child");
@@ -50,8 +51,8 @@ void Utility::execDaemon(const vector<string>& args) {
 			for (int i = 0; i < args.size(); i++) {
 				argv[i] = args[i].c_str();
 			}
-			if (execvp(Module::SELF_NAME_CLIENT.c_str(), (char* const*) argv)) {
-				throw("Could not exec process");
+			if (execvp(Module::SELF_NAME_CLIENT.c_str(), (char* const*) argv) == -1) {
+				throw("Could not replace process");
 			}
 		}
 	}

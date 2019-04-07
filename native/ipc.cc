@@ -30,7 +30,7 @@ static const string SOCKET_PATH = Module::STORAGE + "/.socket";
 static socket_server server;
 static socket_client* client;
 
-static void initServer() {
+void IPC::initServer() {
 	try {
 		server.setup(SOCKET_PATH);
 
@@ -45,11 +45,7 @@ static void initServer() {
 }
 
 int IPC::receiveClient() {
-	if (server.getfd() == -1) {
-		initServer();
-	}
 	int req = -1;
-
 	try {
 		client = server.accept();
 		client->recv(&req, sizeof(req));

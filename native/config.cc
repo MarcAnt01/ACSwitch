@@ -112,13 +112,10 @@ void Config::updateThresholds(const vector<string>& args) {
 		setConfig(THR_ENABLE_KEY, THR_ENABLE_DEF);
 
 	} else if (args.size() == 2) {
-		int thrDisable = Sanity::toLevel(args[0]);
-		int thrEnable = Sanity::toLevel(args[1]);
 
-		if (thrDisable <= thrEnable) {
+		if (Sanity::toLevel(args[0]) <= Sanity::toLevel(args[1])) {
 			throw("Arguments are not in correct order");
 		}
-
 		setConfig(THR_DISABLE_KEY, args[0]);
 		setConfig(THR_ENABLE_KEY, args[1]);
 
