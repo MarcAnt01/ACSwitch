@@ -46,7 +46,7 @@ static string getEvent(const array<string, 2>& subsystems, const string& event) 
 	string uevent = Config::getUevent();
 
 	for (const string& subsystem : subsystems) {
-		uevent = dirname(dirname(uevent.c_str())) + subsystem + "/uevent";
+		uevent = dirname(dirname(uevent.c_str())) + "/"s + subsystem + "/uevent";
 
 		if (Shared::fileExists(uevent)) {
 			return Shared::getProperty(event, uevent);
