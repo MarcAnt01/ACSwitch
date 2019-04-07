@@ -28,8 +28,7 @@ static const int LEVEL_MAX = 100;
 int Sanity::toLevel(const string& lvlStr) {
 	int level = stoi(lvlStr);
 
-	if (level < LEVEL_MIN || level > LEVEL_MAX) {
-		throw("Out of range level: " + lvlStr);
-	}
-	return level;
+	return level < LEVEL_MIN || level > LEVEL_MAX
+		? throw("Out of range level: " + lvlStr)
+		: level;
 }

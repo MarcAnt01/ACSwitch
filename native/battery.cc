@@ -52,11 +52,7 @@ static string getEvent(const array<string, 2>& subsystems, const string& event) 
 			return Shared::getProperty(event, uevent);
 		}
 	}
-	if (event == ONLINE_EVENT) {
-		return "";
-	} else {
-		throw("Setup is incorrect, please configure again");
-	}
+	return event == ONLINE_EVENT ? "" : throw("Setup is incorrect, please configure again");
 }
 
 static string getEvent(const string& event) {

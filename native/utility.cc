@@ -30,8 +30,7 @@
 using namespace std;
 
 static bool xfork() {
-	pid_t child = fork();
-	switch (child) {
+	switch (fork()) {
 		case -1: throw("Could not fork child");
 		case 0: return false;
 		default: return true;
