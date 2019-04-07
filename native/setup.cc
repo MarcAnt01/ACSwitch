@@ -56,7 +56,7 @@ void Setup::configureSwitch(const vector<string>& args) {
 
 		if (Battery::isPowered() && Battery::isCharging()) {
 			Battery::stopCharging();
-			if (!Battery::isPowered() || Battery::isCharging()) {
+			if (/* !Battery::isPowered() || */Battery::isCharging()) {
 				Battery::startCharging();
 			} else {
 				Battery::startCharging();

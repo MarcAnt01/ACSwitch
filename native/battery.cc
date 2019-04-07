@@ -103,13 +103,13 @@ void Battery::stopCharging() {
 }
 
 void Battery::startChargingSafely() {
-	if (isPowered() && !isCharging()) {
+	if (/* isPowered() && */!isCharging()) {
 		startCharging();
 	}
 }
 
 void Battery::stopChargingSafely() {
-	if (isPowered() && isCharging()) {
+	if (/* isPowered() && */isCharging()) {
 		stopCharging();
 	}
 }
