@@ -41,6 +41,7 @@ readonly VERSION=$(getprop version $MODINFO)
 readonly CODE=$(($(getprop versionCode $MODINFO) + 1))
 
 setprop versionCode $CODE $MODINFO
+sed -i "s/__VERSION_CODE__/$CODE/" $NATIVE/module.cc
 
 source $PATCHER
 source $COMPILER
