@@ -91,6 +91,7 @@ bool Commandline::handleArgs(int argc, const char* argv[]) noexcept {
 				Setup::checkOrDie();
 			}
 			options[optsIndex].handler(args);
+			cout << "Option [" << options[optsIndex].option << "] handled successfully!" << endl;
 
 		} catch (const exception& e) {
 			cerr << e.what() << endl;
