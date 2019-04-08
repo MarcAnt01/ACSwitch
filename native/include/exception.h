@@ -17,13 +17,26 @@
 
 #pragma once
 
+#include <cerrno>
+#include <cstring>
 #include <string>
 
 class Exception : public std::exception {
 	public:
-		Exception(const std::string& file, int line, const std::string& what) noexcept;
+		Exception(const std::string& file, int line, const std::string& what) noexcept {
+			using std::operator""s;
+
+			_what = file.c_str() + ":"s + std::to_string(line) + ": " + what;
+			if (errno != 0) {
+				_what += " ("s + strerror(errno) + ")"s;
+			}
+		}
+
 		~Exception() noexcept = default;
-		const char* what() const noexcept;
+
+		const char* what() const noexcept {
+			return _what.c_str();
+		}
 
 	private:
 		std::string _what;
