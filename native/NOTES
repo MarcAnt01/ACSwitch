@@ -2,4 +2,8 @@ Options other than [--configure] have been proved working correctly either by my
 personal testing or by users testing ACSwitch. [--configure] may be the only one
 that needs a little attention of mine, but don't forget others though.
 
+Another thing to note here is that we do not detect whether charger is connected
+before writing to the trigger, which in turn can result in many wakelocks thrown
+by kernel and actually take up so much of CPU cycles that performance is hit.
+
 Once above is satisfied, I may release the very first completely stable version.
