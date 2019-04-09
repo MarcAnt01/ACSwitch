@@ -42,4 +42,4 @@ class Exception : public std::exception {
 		std::string _what;
 };
 
-#define throw(err) throw Exception(__FILE__, __LINE__, (err))
+#define throw(err) throw Exception(__FILE__, __LINE__, err)

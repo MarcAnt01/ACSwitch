@@ -22,35 +22,21 @@
 
 #include <chrono>
 #include <fstream>
+#include <libgen.h>
 #include <string>
 #include <thread>
-#include <vector>
 
 using namespace std;
 using namespace chrono;
 using namespace this_thread;
 
-static const string POWER_SUPPLY_CLASS = "/sys/class/power_supply";
-
-static const vector<string> BATTERY_SUBSYSTEMS = { "battery", "Battery" };
-static const vector<string> OTHER_SUBSYSTEMS = { "ac", "AC", "usb", "USB" };
-
 static const string CAPACITY_EVENT = "POWER_SUPPLY_CAPACITY";
-static const string ONLINE_EVENT = "POWER_SUPPLY_ONLINE";
 static const string STATUS_EVENT = "POWER_SUPPLY_STATUS";
 
-static const string ONLINE_CONNECTED = "1";
 static const string STATUS_CHARGING = "Charging";
 
 static string getEvent(const string& event) {
-	for (const string& subsystem : BATTERY_SUBSYSTEMS) {
-		const string uevent = POWER_SUPPLY_CLASS + "/" + subsystem + "/uevent";
-
-		if (Shared::fileExists(uevent)) {
-			return Shared::getProperty(event, uevent);
-		}
-	}
-	throw("Setup is incorrect, please configure again");
+	return Shared::getProperty(event, dirname(Config::getTrigger().c_str()) + "/uevent"s);
 }
 
 static void writeTrigger(const string& val) {
@@ -77,17 +63,6 @@ int Battery::getLevel() {
 	return stoi(getCapacity());
 }
 
-bool Battery::isPowered() {
-	for (const string& subsystem : OTHER_SUBSYSTEMS) {
-		const string uevent = POWER_SUPPLY_CLASS + "/" + subsystem + "/uevent";
-
-		if (Shared::fileExists(uevent) && Shared::getProperty(ONLINE_EVENT, uevent) == ONLINE_CONNECTED) {
-			return true;
-		}
-	}
-	return false;
-}
-
 bool Battery::isCharging() {
 	return getStatus() == STATUS_CHARGING;
 }
@@ -101,13 +76,13 @@ void Battery::stopCharging() {
 }
 
 void Battery::startChargingSafely() {
-	if (isPowered() && !isCharging()) {
+	if (!isCharging()) {
 		startCharging();
 	}
 }
 
 void Battery::stopChargingSafely() {
-	if (isPowered() && isCharging()) {
+	if (isCharging()) {
 		stopCharging();
 	}
 }

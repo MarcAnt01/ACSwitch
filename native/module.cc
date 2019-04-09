@@ -24,8 +24,7 @@
 
 using namespace std;
 
-#define str(x) #x
-static const string VERSION_CODE = "VERSION CODE: " str(__VERSION_CODE__);
+static const string VERSION_CODE = "VERSION CODE: __VERSION_CODE__";
 
 [[noreturn]] void Module::printHelp(const vector<string>& args) noexcept {
 	cerr << HELP << endl;

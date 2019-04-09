@@ -25,7 +25,6 @@ namespace Battery
 	std::string getStatus();
 
 	int getLevel();
-	bool isPowered();
 	bool isCharging();
 
 	void startCharging();

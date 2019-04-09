@@ -57,7 +57,7 @@ static bool setOptsIndexOf(const char* arg) noexcept {
 	return optsIndex != -1;
 }
 
-#define isOption(arg) ((arg[0]) == '-' && (arg[1]) == '-')
+#define isOption(arg) arg[0] == '-' && arg[1] == '-'
 
 static bool populateArgs(vector<string>& args) {
 	for (int i = argvIndex + 1; i < argcMain && argvMain[i]; i++) {

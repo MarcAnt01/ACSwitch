@@ -53,9 +53,9 @@ void Setup::configureSwitch(const vector<string>& args) {
 	for (const Database::Switch& switch_ : Database::getSwitches()) {
 		setSwitch(switch_);
 
-		if (Battery::isPowered() && Battery::isCharging()) {
+		if (Battery::isCharging()) {
 			Battery::stopCharging();
-			if (!Battery::isPowered() || Battery::isCharging()) {
+			if (Battery::isCharging()) {
 				Battery::startCharging();
 			} else {
 				Battery::startCharging();

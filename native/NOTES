@@ -2,8 +2,4 @@ Options other than [--method] have been proved working well either personally by
 me or by users testing ACSwitch. [--method] is perhaps the only one that needs a
 little attention of mine, but not forgetting others though.
 
-Another thing to note here is that we do not detect whether charger is connected
-before writing to the trigger, which in turn may result in kernel wakelocks that
-may take up CPU cycles hitting performance.
-
 Once above is satisfied, I may release the very first completely stable version.
