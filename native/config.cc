@@ -32,7 +32,6 @@ static const string AUTOMATION_KEY = "automation";
 static const string THR_DISABLE_KEY = "thr_disable";
 static const string THR_ENABLE_KEY = "thr_enable";
 
-static const string UEVENT_KEY = "uevent";
 static const string TRIGGER_KEY = "trigger";
 static const string POS_VAL_KEY = "pos_val";
 static const string NEG_VAL_KEY = "neg_val";
@@ -62,10 +61,6 @@ int Config::getThrEnable() {
 	return stoi(getConfig(THR_ENABLE_KEY));
 }
 
-string Config::getUevent() {
-	return getConfig(UEVENT_KEY);
-}
-
 string Config::getTrigger() {
 	return getConfig(TRIGGER_KEY);
 }
@@ -76,10 +71,6 @@ string Config::getPosVal() {
 
 string Config::getNegVal() {
 	return getConfig(NEG_VAL_KEY);
-}
-
-void Config::setUevent(const string& val) {
-	setConfig(UEVENT_KEY, val);
 }
 
 void Config::setTrigger(const string& val) {

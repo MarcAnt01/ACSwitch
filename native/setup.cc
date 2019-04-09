@@ -28,17 +28,16 @@
 
 using namespace std;
 
-static const string DUMMY_SWITCH = "dummyValue";
+static const string DUMMY_VALUE = "dummyValue";
 
 static void setSwitch(const Database::Switch& switch_) {
-	Config::setUevent(switch_.uevent);
 	Config::setTrigger(switch_.trigger);
 	Config::setPosVal(switch_.posVal);
 	Config::setNegVal(switch_.negVal);
 }
 
 bool Setup::configGood() {
-	return Shared::fileExists(Config::getUevent()) && Shared::fileExists(Config::getTrigger());
+	return Shared::fileExists(Config::getTrigger());
 }
 
 void Setup::checkOrDie() {
@@ -56,7 +55,7 @@ void Setup::configureSwitch(const vector<string>& args) {
 
 		if (Battery::isPowered() && Battery::isCharging()) {
 			Battery::stopCharging();
-			if (/* !Battery::isPowered() || */Battery::isCharging()) {
+			if (!Battery::isPowered() || Battery::isCharging()) {
 				Battery::startCharging();
 			} else {
 				Battery::startCharging();
@@ -67,10 +66,9 @@ void Setup::configureSwitch(const vector<string>& args) {
 		}
 	}
 	setSwitch({
-		DUMMY_SWITCH,
-		DUMMY_SWITCH,
-		DUMMY_SWITCH,
-		DUMMY_SWITCH
+		DUMMY_VALUE,
+		DUMMY_VALUE,
+		DUMMY_VALUE
 	});
 	throw("Your device is unfortunately not supported :(");
 }

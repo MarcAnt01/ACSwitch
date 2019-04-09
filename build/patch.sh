@@ -25,7 +25,6 @@ readonly ELEMENT_BODY=\
 "	{
 		\"%s\",
 		\"%s\",
-		\"%s\",
 		\"%s\"
 	},"
 
@@ -43,7 +42,7 @@ static vector<Database::Switch> switch_ = {
 
 vector<Database::Switch>& Database::getSwitches() {
 	for (int i = 0; i < switch_.size(); i++) {
-		if (!Shared::fileExists(switch_[i].uevent) || !Shared::fileExists(switch_[i].trigger)) {
+		if (!Shared::fileExists(switch_[i].trigger)) {
 			switch_.erase(switch_.begin() + i--);
 		}
 	}
@@ -57,12 +56,6 @@ function parsenode {
 	POS_VAL=$2
 	NEG_VAL=$3
 
-	if [[ $1 != /sys/class/* && $1 != /sys/devices/* ]]; then
-		UEVENT=/sys/class/power_supply/battery/uevent
-	else
-		UEVENT=$(dirname $1)/uevent
-	fi
-
 	[[ -n $NEG_VAL ]] && return 0 || return 1
 }
 
@@ -74,7 +67,7 @@ while read LINE; do
 	if ! parsenode "$LINE"; then
 		abort "Raw database (switch.db-raw) is malformed, invalid entry: \"$LINE\""
 	fi
-	ELEMENTS+=$(printf "$ELEMENT_BODY\n" $UEVENT $TRIGGER $POS_VAL $NEG_VAL)
+	ELEMENTS+=$(printf "$ELEMENT_BODY\n" $TRIGGER $POS_VAL $NEG_VAL)
 done < <(grep -Ev "^$|^#" $DB_RAW)
 
 printf "$SOURCE_BODY\n" "$ELEMENTS" >>$DB_SOURCE

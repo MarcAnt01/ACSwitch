@@ -23,7 +23,6 @@
 namespace Database
 {
 	struct Switch {
-		std::string uevent;
 		std::string trigger;
 		std::string posVal;
 		std::string negVal;

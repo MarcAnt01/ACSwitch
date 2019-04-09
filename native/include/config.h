@@ -26,12 +26,10 @@ namespace Config
 	int getThrDisable();
 	int getThrEnable();
 
-	std::string getUevent();
 	std::string getTrigger();
 	std::string getPosVal();
 	std::string getNegVal();
 
-	void setUevent(const std::string& val);
 	void setTrigger(const std::string& val);
 	void setPosVal(const std::string& val);
 	void setNegVal(const std::string& val);
