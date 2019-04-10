@@ -24,7 +24,7 @@
 namespace Commandline
 {
 	struct Option {
-		std::string option;
+		std::string name;
 		int argsMin;
 		int argsMax;
 		bool checkSetup;

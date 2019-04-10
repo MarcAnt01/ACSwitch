@@ -31,7 +31,7 @@
 
 using namespace std;
 
-static const array<Commandline::Option, 7> options = { {
+static const array<Commandline::Option, 7> option = { {
 	{ "--toggle",		1,	1,	true,	Config::toggleAutomation },
 	{ "--update",		0,	2,	true,	Config::updateThresholds },
 	{ "--method",		1,	1,	true,	Method::parseAndRun },
@@ -49,8 +49,8 @@ static int argcMain;
 
 static bool setOptsIndexOf(const char* arg) noexcept {
 	optsIndex = -1;
-	for (int i = 0; i < options.size(); i++) {
-		if (options[i].option == arg) {
+	for (int i = 0; i < option.size(); i++) {
+		if (option[i].name == arg) {
 			optsIndex = i;
 		}
 	}
@@ -65,12 +65,12 @@ static bool populateArgs(vector<string>& args) {
 			break;
 		}
 
-		if (args.size() < options[optsIndex].argsMax) {
+		if (args.size() < option[optsIndex].argsMax) {
 			args.push_back(argvMain[i]);
 			argvIndex++;
 		}
 	}
-	return args.size() >= options[optsIndex].argsMin;
+	return args.size() >= option[optsIndex].argsMin;
 }
 
 bool Commandline::handleArgs(int argc, const char* argv[]) noexcept {
@@ -85,13 +85,13 @@ bool Commandline::handleArgs(int argc, const char* argv[]) noexcept {
 				throw("Unrecognized option: "s + argvMain[argvIndex]);
 			}
 			if (!populateArgs(args)) {
-				throw("Option misses arguments: " + options[optsIndex].option);
+				throw("Option misses arguments: " + option[optsIndex].name);
 			}
-			if (options[optsIndex].checkSetup) {
+			if (option[optsIndex].checkSetup) {
 				Setup::checkOrDie();
 			}
-			options[optsIndex].handler(args);
-			cout << "\nOption [" << options[optsIndex].option << "] handled successfully!" << endl;
+			option[optsIndex].handler(args);
+			cout << "\nOption [" << option[optsIndex].name << "] handled successfully!" << endl;
 
 		} catch (const exception& e) {
 			cerr << e.what() << endl;

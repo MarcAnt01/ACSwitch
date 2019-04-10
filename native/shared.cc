@@ -42,7 +42,7 @@ string Shared::getProperty(const string& key, const string& file) {
 			return line.substr(key.size() + 1);
 		}
 	}
-	throw("Could not find property: " + key + ", in file: " + file);
+	return "";
 }
 
 void Shared::setProperty(const string& key, const string& val, const string& file) {
