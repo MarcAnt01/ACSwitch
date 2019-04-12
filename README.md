@@ -1,6 +1,12 @@
 # Advanced Charging Switch
 
-## [Details](module/README.md)
+## Documentations
+
+[Details](module/README.md)
+
+This whole project is completely intentionally undocumented for how it works. It
+is a small project and you should be able to understand it if you think you're a
+possible contributor.
 
 ## Requirements
 
