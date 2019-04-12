@@ -36,6 +36,11 @@ function getprop {
 readonly VERSION=$(getprop version $MODINFO)
 readonly CODE=$(getprop versionCode $MODINFO)
 
+readonly BUILD=$(($(getprop buildVersion $MODINFO) + 1))
+
+sed -i "s/^buildVersion=.*/buildVersion=$BUILD/g" $MODINFO
+sed -i "s/__BUILD_VERSION__/$BUILD/g" $NATIVE/module.cc
+
 source $PATCHER
 source $COMPILER
 source $PACKER

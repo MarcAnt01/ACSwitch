@@ -24,6 +24,8 @@
 
 using namespace std;
 
+static const string BUILD_VERSION = "BUILD VERSION: __BUILD_VERSION__";
+
 [[noreturn]] void Module::printHelp(const vector<string>& args) noexcept {
 	cerr << HELP << endl;
 	exit(EXIT_FAILURE);
