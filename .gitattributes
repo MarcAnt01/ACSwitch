@@ -9,6 +9,6 @@
 *.prop		text	eol=lf
 *.sh		text	eol=lf
 
-*.a			binary
-bin/**		binary
-*.jar		binary
+module/bin/**	binary
+*.a				binary
+*.jar			binary
