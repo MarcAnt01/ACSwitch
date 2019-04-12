@@ -33,15 +33,8 @@ function getprop {
 	sed -n "s/^$1=//p" $2
 }
 
-function setprop {
-	sed -i "s/^$1=.*/$1=$2/g" $3
-}
-
 readonly VERSION=$(getprop version $MODINFO)
-readonly CODE=$(($(getprop versionCode $MODINFO) + 1))
-
-setprop versionCode $CODE $MODINFO
-sed -i "s/__VERSION_CODE__/$CODE/" $NATIVE/module.cc
+readonly CODE=$(getprop versionCode $MODINFO)
 
 source $PATCHER
 source $COMPILER
