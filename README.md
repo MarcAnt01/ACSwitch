@@ -1,6 +1,6 @@
 # Advanced Charging Switch
 
-## [Details](https://github.com/Magisk-Modules-Repo/ACSwitch/blob/master/README.md)
+## [Details](module/README.md)
 
 ## Requirements
 

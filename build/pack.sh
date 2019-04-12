@@ -30,9 +30,7 @@ function makezip {
 		abort "Could not change current working directory to $2"
 	fi
 	find . -type f | while read FILE; do
-		if [[ $FILE != ./.git ]]; then
-			zip -u9q $1 $FILE
-		fi
+		zip -u9q $1 $FILE
 	done
 }
 
