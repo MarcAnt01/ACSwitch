@@ -1,1 +1,1 @@
-None!
+- Fix the binary segfaulting on Samsung devices. Reason: Unknown!
