@@ -20,8 +20,7 @@
 #include <string>
 #include <vector>
 
-namespace Daemon
-{
+namespace Daemon {
 	bool isRunning();
 
 	void requestAutomating();

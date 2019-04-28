@@ -21,8 +21,7 @@
 #include <string>
 #include <vector>
 
-namespace Commandline
-{
+namespace Commandline {
 	struct Option {
 		std::string name;
 		int argsMin;

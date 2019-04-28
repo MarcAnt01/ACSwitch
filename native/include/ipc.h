@@ -17,8 +17,7 @@
 
 #pragma once
 
-namespace IPC
-{
+namespace IPC {
 	void initServer();
 	int receiveClient();
 	void answerClient(int ret);

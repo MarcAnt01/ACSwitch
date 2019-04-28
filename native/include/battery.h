@@ -19,8 +19,7 @@
 
 #include <string>
 
-namespace Battery
-{
+namespace Battery {
 	std::string getCapacity();
 	std::string getStatus();
 

@@ -20,8 +20,7 @@
 #include <string>
 #include <vector>
 
-namespace Module
-{
+namespace Module {
 	const std::string ID = "ACSwitch";
 	const std::string MOUNTPATH = "/data/adb/modules";
 	const std::string STORAGE = MOUNTPATH + "/" + ID;

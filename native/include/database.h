@@ -20,8 +20,7 @@
 #include <string>
 #include <vector>
 
-namespace Database
-{
+namespace Database {
 	struct Switch {
 		std::string trigger;
 		std::string posVal;

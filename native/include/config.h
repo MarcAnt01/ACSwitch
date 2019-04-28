@@ -20,8 +20,7 @@
 #include <string>
 #include <vector>
 
-namespace Config
-{
+namespace Config {
 	bool isAutomated();
 	int getThrDisable();
 	int getThrEnable();

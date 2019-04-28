@@ -19,8 +19,7 @@
 
 #include <string>
 
-namespace Shared
-{
+namespace Shared {
 	bool fileExists(const std::string& path) noexcept;
 	std::string getProperty(const std::string& key, const std::string& file);
 	void setProperty(const std::string& key, const std::string& val, const std::string& file);

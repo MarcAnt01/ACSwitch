@@ -19,8 +19,7 @@
 
 #include <string>
 
-namespace Sanity
-{
+namespace Sanity {
 	const int SLEEP_DELAY = 60;
 	int toLevel(const std::string& lvlStr);
 }

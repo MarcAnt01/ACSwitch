@@ -21,8 +21,7 @@
 #include <string>
 #include <vector>
 
-namespace Method
-{
+namespace Method {
 	struct MethodInfo {
 		int mode;
 		std::function<bool ()> startMethod;
