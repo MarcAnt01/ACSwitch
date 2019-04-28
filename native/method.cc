@@ -24,7 +24,6 @@
 #include <chrono>
 #include <string>
 #include <thread>
-#include <unistd.h>
 #include <vector>
 
 using namespace std;
@@ -36,7 +35,6 @@ static const int MODE_DISABLED = 2;
 
 static const int THR_TYPE_LEVELED = 1;
 static const int THR_TYPE_TIMED = 2;
-static const int THR_TYPE_NONE = 3;
 
 static Method::MethodInfo info;
 
@@ -51,15 +49,6 @@ static bool parseAndPopulate(const string& fmtStr) {
 			info.startMethod = Daemon::requestDisabling;
 			break;
 		default: return false;
-	}
-
-	switch (fmtStr.size()) {
-		case 2:
-			return false;
-		case 1: {
-			info.thrType = THR_TYPE_NONE;
-			return true;
-		}
 	}
 
 	switch (fmtStr[1]) {
@@ -96,7 +85,7 @@ void Method::parseAndRun(const vector<string>& args) {
 	if (info.thrType == THR_TYPE_TIMED) {
 		sleep_for(seconds(info.thrValue));
 
-	} else if (info.thrType == THR_TYPE_LEVELED) {
+	} else {
 		if (
 				(Battery::getLevel() >= info.thrValue && info.mode == MODE_ENABLED)
 			|| (Battery::getLevel() <= info.thrValue && info.mode == MODE_DISABLED)
@@ -107,6 +96,6 @@ void Method::parseAndRun(const vector<string>& args) {
 		while (Battery::getLevel() != info.thrValue) {
 			sleep_for(seconds(Sanity::SLEEP_DELAY));
 		}
-	} else {}
+	}
 	Daemon::requestAutomating();
 }

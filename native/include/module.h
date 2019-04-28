@@ -52,8 +52,6 @@ namespace Module {
 		"                      for specified seconds, minutes or hours,\n"
 		"        ...           and this is the threshold method runs for.\n"
 		"\n"
-		"        Only the element specifying charging state is necessary.\n"
-		"\n"
 		"    [--configure]\n"
 		"\n"
 		"        Configure ACSwitch, while your device must be charging.\n"
