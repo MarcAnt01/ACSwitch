@@ -14,8 +14,7 @@ extern "C" {
 	int accept_socket(int fd, int flags);
 }
 
-namespace libsocket
-{
+namespace libsocket {
 	struct socket_exception {
 		int errnum;
 		std::string what;
