@@ -15,14 +15,14 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <string>
+#include <vector>
+
 #include "config.h"
 #include "exception.h"
 #include "module.h"
 #include "sanity.h"
 #include "shared.h"
-
-#include <string>
-#include <vector>
 
 using namespace std;
 

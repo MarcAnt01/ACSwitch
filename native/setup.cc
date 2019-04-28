@@ -15,6 +15,9 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <string>
+#include <vector>
+
 #include "battery.h"
 #include "config.h"
 #include "daemon.h"
@@ -22,9 +25,6 @@
 #include "exception.h"
 #include "setup.h"
 #include "shared.h"
-
-#include <string>
-#include <vector>
 
 using namespace std;
 

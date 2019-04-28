@@ -15,13 +15,13 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <cerrno>
+#include <string>
+
 #include "exception.h"
 #include "ipc.h"
 #include "module.h"
 #include "socket.h"
-
-#include <cerrno>
-#include <string>
 
 using namespace std;
 

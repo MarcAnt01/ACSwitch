@@ -15,17 +15,17 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "battery.h"
-#include "config.h"
-#include "exception.h"
-#include "module.h"
-#include "utility.h"
-
 #include <cstdlib>
 #include <iostream>
 #include <string>
 #include <unistd.h>
 #include <vector>
+
+#include "battery.h"
+#include "config.h"
+#include "exception.h"
+#include "module.h"
+#include "utility.h"
 
 using namespace std;
 

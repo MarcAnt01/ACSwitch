@@ -29,10 +29,10 @@ readonly ELEMENT_BODY=\
 	},"
 
 readonly SOURCE_BODY=\
-"#include \"database.h\"
-#include \"shared.h\"
+"#include <vector>
 
-#include <vector>
+#include \"database.h\"
+#include \"shared.h\"
 
 using namespace std;
 

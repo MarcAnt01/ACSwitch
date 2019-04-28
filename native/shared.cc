@@ -15,14 +15,14 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "exception.h"
-#include "module.h"
-#include "shared.h"
-
 #include <cstdio>
 #include <fstream>
 #include <iostream>
 #include <string>
+
+#include "exception.h"
+#include "module.h"
+#include "shared.h"
 
 using namespace std;
 

@@ -15,16 +15,16 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <chrono>
+#include <string>
+#include <thread>
+#include <vector>
+
 #include "battery.h"
 #include "daemon.h"
 #include "exception.h"
 #include "method.h"
 #include "sanity.h"
-
-#include <chrono>
-#include <string>
-#include <thread>
-#include <vector>
 
 using namespace std;
 using namespace chrono;

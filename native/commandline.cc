@@ -15,6 +15,11 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <array>
+#include <iostream>
+#include <string>
+#include <vector>
+
 #include "commandline.h"
 #include "config.h"
 #include "daemon.h"
@@ -23,11 +28,6 @@
 #include "module.h"
 #include "setup.h"
 #include "utility.h"
-
-#include <array>
-#include <iostream>
-#include <string>
-#include <vector>
 
 using namespace std;
 

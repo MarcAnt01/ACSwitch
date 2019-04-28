@@ -15,12 +15,12 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "module.h"
-
 #include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>
+
+#include "module.h"
 
 using namespace std;
 

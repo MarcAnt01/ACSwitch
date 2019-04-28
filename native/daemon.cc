@@ -15,6 +15,15 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <atomic>
+#include <chrono>
+#include <csignal>
+#include <cstdlib>
+#include <iostream>
+#include <string>
+#include <thread>
+#include <vector>
+
 #include "battery.h"
 #include "config.h"
 #include "daemon.h"
@@ -24,15 +33,6 @@
 #include "sanity.h"
 #include "setup.h"
 #include "utility.h"
-
-#include <atomic>
-#include <chrono>
-#include <csignal>
-#include <cstdlib>
-#include <iostream>
-#include <string>
-#include <thread>
-#include <vector>
 
 using namespace std;
 using namespace chrono;

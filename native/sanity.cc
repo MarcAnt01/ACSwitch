@@ -15,10 +15,10 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <string>
+
 #include "exception.h"
 #include "sanity.h"
-
-#include <string>
 
 using namespace std;
 

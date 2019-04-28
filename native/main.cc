@@ -15,14 +15,14 @@
  * along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "commandline.h"
-#include "daemon.h"
-#include "module.h"
-
 #include <cstdlib>
 #include <iostream>
 #include <string>
 #include <unistd.h>
+
+#include "commandline.h"
+#include "daemon.h"
+#include "module.h"
 
 using namespace std;
 
