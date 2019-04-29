@@ -1,6 +1,6 @@
 # Advanced Charging Switch
 
-[Details](module/README.md)
+## [Developer Documentations](docs/index.md)
 
 ## Requirements
 
