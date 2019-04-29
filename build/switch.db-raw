@@ -4,9 +4,9 @@
 # PWD=/sys/class/power_supply
 # Last updated: Sat, Mar 2, 2019
 
-# I have kept just those switches which I could deal with using standard C++ API
-# and have replaced many by their absolute equivalents. The original base was at
-# the following link at time of writing:
+# I have removed those switches which I couldn't deal with using standard C++ APIs
+# and converted these all to their absolute equivalents. The original database was
+# at the following link at time of writing:
 # https://github.com/Magisk-Modules-Repo/acc/blob/master/common/switches.txt.
 
 /sys/class/hw_power/charger/charge_data/enable_charger 1 0

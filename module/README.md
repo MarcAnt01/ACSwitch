@@ -1,93 +1,117 @@
 # Advanced Charging Switch
 
-### ACSwitch allows you to switch charging status based on configured Automation and on demand.
+### Basically enables you to switch charging state.
 
 ## Description
 
-ACSwitch disables charging when battery level hits a specified disable threshold
-and enables it back when a specified enable threshold is hit. It is handled by a
-daemon which runs autonomous in background. This part is called Automation...
+ACSwitch automatically switches charging off when battery level reaches a certain
+disable threshold and back on as soon as level drowns to enable threshold. Thus,
+keeping battery level bouncing between those boundaries. This feature is called
+'Automation'.
 
-... and you can also manually enable, or disable charging using the commandline,
-such sessions are called charging methods. These methods can be set to run until
-a certain level is hit or for specific time interval.
+There's one more feature namingly 'method's, which basically helps in enabling or
+disabling charging based on conditions including battery level and time. Though
+it is recommended only if you really need it or have decent knowledge of how phone
+batteries work.
 
-See first three options in 'Usage' section regarding Automation and methods.
+Please see 'Usage' section on manipulating these features and playing with ACSwitch.
 
 ## Requirements
 
-1. Android Lollipop (5.0) or newer.
-2. Modern ARM or x86 based chipset.
-3. If systemless mode, Magisk v18.2 (18105) or newer,
-4. or else, any root solution and Init.d support.
+1. Android Lollipop or up
+2. ARM or x86 based chipset
+3. Magisk v18.2 (18105) or up
+4. Any root solution and Init.d support
+
+Having either one of 3 or 4 would suffice, 3 is favored if both are detected.
 
 ## Downloads
 
-Please download the zip [from here](https://github.com/Magisk-Modules-Repo/ACSwitch/releases)
-as installing directly from 'Magisk downloads' enforces Magisk framework.
+Please obtain release zips [from GitHub releases](https://github.com/Magisk-Modules-Repo/ACSwitch/releases),
+downloading from Magisk Manager enforces Magisk framework which forbids some
+installation functions.
 
 ## Installation
 
-ACSwitch supports both, Magisk systemless and standard /system installations. To
-install, just flash the zip using either Magisk Manager or any custom recovery.
-
-Beware that if Magisk is installed, but is older than what is required at least,
-the installer will automatically install ACSwitch in /system mode (which you may
-not like).
+Assured your device meets requirements, ACSwitch can be flashed like any other
+flashable, Magisk Manager and TWRP are advised as installation mediums.
 
 ## Setup
 
-You must configure ACSwitch each time after either flashing the zip, a kernel or
-a ROM. After it configures itself, you should set it up to suit your needs. Here
-is what a minimal setup should be like...
+If you aren't a power-user and don't wanna mess with understanding commandline
+(although it's pretty well explained), here is what a minimal setup should be
+like,
 
-    su                  # Returns a root shell session.
-    acs --configure     # Configures ACSwitch, device must be charging.
-    acs --update 70 60  # Update Automation thresholds, replace '70 60'.
-    acs --daemon launch # Launch the daemon (just in case :blink:).
+    su                                    # Obtain a root shell
+    acs --configure                       # Configure ACSwitch
+    acs --update 70 60                    # Update thresholds, substitute 70 and 60
+    acs --daemon launch                   # Launch the daemon
 
 ## Usage
 
 `acs [<option> [<args>...]...]`
 
-Every option below must be executed with escalated privileges, i.e., `su`.
+    [--toggle] <state>
 
-Options:
+        Toggles Automation on or off.
+        <state> can be either 'ON' or 'OFF'.
 
-    [--toggle] <state: ON, OFF>
+        -> `acs --toggle ON`  will toggle Automation on
+        -> `acs --toggle OFF` will toggle Automation off
 
-        Toggle Automation status on or off.
+    [--update] <thr_disable> <thr_enable>
 
-    [--update] <thr_disable: int> <thr_enable: int>
+        Updates Automation disable threshold and enable threshold,
+        resets them to defaults if no values were specified.
+        <thr_disable> and <thr_enable> must be integers.
 
-        Set Automation disable threshold and enable threshold to
-        thr_disable and thr_enable respectively. Thresholds will
-        be reset if none were specified.
+        -> `acs --update 90 80` will set disable threshold to 90
+                                and enable threshold to 80
+        -> `acs --update`       will reset thresholds (70 60)
 
-    [--method] <format_str: (e|d)(%: int|s|m|h)(threshold)>
+    [--method] <format_str>
 
-        Run a charging method. Here, format_str may have...
+        Run a method based on format string <format_str>.
+        Here, format string must follow the pattern:
+            (e|d)(%|s|m|h)(threshold: int)
 
+        where...
         ... (e|d)     defines if enabling or disabling charging,
-        ... (%|s|m|h) defines if running until a level is hit or
-                      for specified seconds, minutes or hours,
-        ...           and this is the threshold method runs for.
+        ... (%|s|m|h) defines if seeking level or time interval,
+        ...           and this is the value of threshold.
+
+        -> `acs --method es60` will enable charging for 60 seconds
+        -> `acs --method d%40` will disable charging until 40%
+        -> `acs --method em30` will enable charging for 30 minutes
 
     [--configure]
 
-        Configure ACSwitch, while your device must be charging.
+        Configure ACSwitch, device must be charging concurrently.
+        This task is required each time you change kernel or
+        update ACSwitch.
 
-    [--daemon] <action: launch, kill>
+        -> `acs --configure` will configure ACSwitch
 
-        Launch or kill the ACSwitch daemon. Note that Automation
-        and charging methods, both depend on the daemon.
+    [--daemon] <action>
 
-    [--info]    Print battery information and ACSwitch settings.
+        Launches or kills the daemon.
+        <action> can be either 'launch' or 'kill'.
+
+        -> `acs --daemon launch` will launch the daemon
+        -> `acs --daemon kill`   will kill the daemon
+
+    [--info]
+
+        Print battery details and ACSwitch settings.
+
+        -> `acs --info` will print battery level, charging state,
+                        Automation state, disable threshold and
+                        enable threshold
 
 ## Support
 
-Just tell me your concern in detail in [this Telegram group](https://t.me/joinchat/JUfXGwuAuzKxo5boALVf1w)
-and I will assist you with relevant necessities.
+Please share your unease in [this Telegram group](https://t.me/joinchat/JUfXGwuAuzKxo5boALVf1w)
+and I will serve you ASAP with required solutions.
 
 ## Legal
 

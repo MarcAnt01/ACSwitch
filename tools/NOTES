@@ -1,3 +1,4 @@
-Files in this folder are a combination of tools used during building of ACSwitch
-and of tools used personally by me while developing, you may find them useful as
-well, but you will mostly need to adapt them to your specific setup.
+This folder contains tools that are used either during building of ACSwitch or
+by me personally while developing ACSwitch. All the scripts are standalone and
+can be used on their own as long as you define ANDROID_NDK_HOME environment var
+pointing to Android NDK, though you may need to adapt some code to your setup.

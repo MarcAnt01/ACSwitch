@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License
 along with ACSwitch.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Notice for zipsigner.jar binary found in tools/ folder.
+ * Notice for zipsigner.jar binary in tools/ folder.
  */
 
 Magisk, including all git submodules are free software:
@@ -32,11 +32,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Notice for libsocket++_<arch>.a (arch: arm, x86) libraries inside native/lib/
- * folder and socket.h header file found in native/include/ folder.
+ * Notice for libsocket++ libraries in native/lib/ folder and socket.h header in
+ * native/include/ folder.
  *
- * I have modified and removed some parts of libsocket as per needs of ACSwitch,
- * my modified sources of the same can be found at git as
+ * I have removed some parts of libsocket and adapted some to needs of ACSwitch,
+ * my modified sources of the same can be found at:
  * https://github.com/sjaymin1001/libsocket.
  */
 
