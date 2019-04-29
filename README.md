@@ -4,8 +4,8 @@
 
 ## Requirements
 
-1. Android NDK r19 or newer.
-2. `zip` available in PATH.
+1. Android NDK r19 or up
+2. `zip` binary in PATH
 
 ## Building
 
@@ -13,13 +13,12 @@ Building is officially supported on Linux only and tested on Ubuntu 18.10 Deskto
 with Android NDK r19c. Building on other platforms though is possible with minor
 modifications to build scripts. To build ACSwitch,
 
-1. Export NDK path to `ANDROID_NDK_HOME` environment variable.
-2. Run `build.sh` script in root of ACSwitch project folder.
+1. Export NDK path to `ANDROID_NDK_HOME` environment variable
+2. Run `build.sh` script in root of ACSwitch project folder
 
 The build process will patch source files with control files database, compile acs
-binaries and pack a flashable zip for both recovery and Magisk Manager. Output zip
-will be placed in `out/` folder and errors, if any, will be logged in `out/build.log`
-file.
+binaries and pack a flashable zip out of module source tree. Resulting zip will be
+in `out/` folder and errors, if any, will be logged in `out/build.log` file.
 
 ## Legal
 

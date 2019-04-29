@@ -5,8 +5,8 @@
 # Last updated: Sat, Mar 2, 2019
 
 # I have removed those switches which I couldn't deal with using standard C++ APIs
-# and converted these all to their absolute equivalents. The original database was
-# at the following link at time of writing:
+# and converted all others to their absolute equivalents. The original base was at
+# the following link at time of writing:
 # https://github.com/Magisk-Modules-Repo/acc/blob/master/common/switches.txt.
 
 /sys/class/hw_power/charger/charge_data/enable_charger 1 0

@@ -56,6 +56,6 @@ source $BUILDER
 echo -e ""
 echo -e "Output zip file: \e[01;32m$OUTZIP\e[0m"
 echo -e ""
-echo -e "\e[01;35mIf you had made any changes to source code, please contribute your changes back\e[0m"
-echo -e "\e[01;35mso that other users may benefit from them as well. This is just a humble request.\e[0m"
+echo -e "\e[01;35mIf you had made any changes to source code, please contribute them back to me so\e[0m"
+echo -e "\e[01;35mthat other users may also benefit from them as well. It's just a humble request.\e[0m"
 echo -e ""
