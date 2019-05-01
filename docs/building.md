@@ -36,3 +36,5 @@ update `module/META-INF/com/google/android/update-binary` correspondingly.
 #### Older NDK versions
 
 Building with older NDKs should require only changes as with for 64-bit platforms.
+Mind though that native part of ACSwitch complies with C++17, if your NDK doesn't
+support it, you will need to transform the code to C++14 or C++11.
