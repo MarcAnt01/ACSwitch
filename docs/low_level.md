@@ -9,8 +9,8 @@ Here is another attempt of the same :)
 #### Configuration
 
 Configuring is initial part of the job, it's basically detecting which switch is
-to be used and what are true/false values. ACSwitch, for this, does not actually
-test if they work, rather only their existence is tested.
+to be used and what are true/false values. ACSwitch, for this, also checks if they
+work in addition to their existence.
 
 #### Switching
 
