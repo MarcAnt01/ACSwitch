@@ -2,11 +2,11 @@
 
 ## Advanced Building
 
-Building ACSwitch costs little, but it though restricts many aspects of platform
-support for low end architectures. Don't worry though, here are some tips to
+Building ACSwitch costs little, even if it restricts many aspects of platform
+support for low-end architectures, but don't worry, here are some tips to
 support them!
 
-    Before reading onwards, know these terms:
+    Before reading onwards, take a look to these terms:
 
     compiler script                               <--- build/compile.sh
     libsocket++ libraries                         <--- native/lib/libsocket++_<arch>.a
@@ -14,10 +14,10 @@ support them!
 
 #### Host OS
 
-Though I haven't personally built ACSwitch on platforms other than Linux, I may
+As far as I am concerned, I haven't built ACSwitch on other platforms apart from Linux, I may
 say that building on Macs should not require much modifications to scripts but
 Windows, on the other hand, must take paths converted for `Windows Subsystem for Linux`
-and executables suffixed `.exe` extensions. Other than these, everything will work
+and executables suffixed `.exe` extensions. Except that, everything will work
 great!
 
 #### Target API
@@ -36,5 +36,5 @@ update `module/META-INF/com/google/android/update-binary` correspondingly.
 #### Older NDK versions
 
 Building with older NDKs should require only changes as with for 64-bit platforms.
-Mind though that native part of ACSwitch complies with C++17, if your NDK doesn't
+Keep in mind that the native part of ACSwitch complies with C++17, if your NDK doesn't
 support it, you will need to transform the code to C++14 or C++11.

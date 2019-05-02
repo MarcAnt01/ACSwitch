@@ -2,8 +2,8 @@
 
 ## Project Structure
 
-ACSwitch is a small project, I have strived worst to structure it nice enough for
-such scale. It forms out of following components:
+ACSwitch is a small project, I have strived to structure it nice enough for
+such scale. It consists of the following components:
 
 #### Native source code
 
